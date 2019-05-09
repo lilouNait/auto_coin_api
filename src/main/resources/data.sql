@@ -1,0 +1,1 @@
+insert into garage (id,name) values(11,'pipi');

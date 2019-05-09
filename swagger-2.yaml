@@ -6,22 +6,47 @@ info:
 schemes:
   - https
   - http
-securityDefinitions:
-  basicAuth:
-    type: basic
-    description: HTTP Basic Authentication.
-security:
-  - basicAuth: []
 basePath: /api/v1
 produces:
   - application/json
-  
-  
+
+
 paths:
+  /login:
+    post:
+      operationId: login
+      summary: Log user
+      tags:
+        - Login
+      responses:
+        200:
+          description: Login response
+
   /garages:
     get:
       operationId: getGarage
       summary: Get all garages.
+      parameters:
+        - name: Search by name
+          in: query
+          description: Search by name.
+          required: false
+          type: string
+        - name: partner
+          in: query
+          description: Search by partner.
+          required: false
+          type: string
+        - name: address
+          in: query
+          description: Search by address.
+          required: false
+          type: string
+        - name: coordinates
+          in: query
+          description: Search by coordinates.
+          required: false
+          type: string
       tags:
         - Garage
       responses:
@@ -38,7 +63,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
     post:
       operationId: createGarage
       summary: Create a new Garage.
@@ -56,9 +81,9 @@ paths:
           description: Create garage response
           schema:
             $ref: '#/definitions/Garage'
-    
+
   /garages/{id}:
-    get: 
+    get:
       operationId: getGarageById
       summary: Get a Garage
       parameters:
@@ -81,7 +106,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-                
+
     put:
       operationId: updateGarageById
       summary: Update a garage.
@@ -108,7 +133,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-    
+
     delete:
       operationId: deleteGarageById
       summary: Delete a garage.
@@ -127,12 +152,33 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-          
-      
+
+
   /users:
     get:
       operationId: getUser
       summary: Get all users.
+      parameters:
+        - name: Search by name
+          in: query
+          description: Search by name.
+          required: false
+          type: string
+        - name: username
+          in: query
+          description: Search by username.
+          required: false
+          type: string
+        - name: email
+          in: query
+          description: Search by email.
+          required: false
+          type: string
+        - name: status
+          in: query
+          description: Search by status.
+          required: false
+          type: string
       tags:
         - User
       responses:
@@ -149,7 +195,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-      
+
     post:
       operationId: createUser
       summary: Create a new User.
@@ -167,14 +213,14 @@ paths:
           description: Create garage response
           schema:
             $ref: '#/definitions/User'
-            
+
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-    
+
   /users/{id}:
-    get: 
+    get:
       operationId: getUserById
       summary: Get a User
       parameters:
@@ -197,7 +243,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
     put:
       operationId: updateUserById
       summary: Update a user.
@@ -224,7 +270,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-    
+
     delete:
       operationId: deleteUserById
       summary: Delete a user.
@@ -242,12 +288,12 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'    
-        
-    
-        
-            
-      
+            $ref: '#/definitions/Error'
+
+
+
+
+
 definitions:
   Comment:
     type: object
@@ -258,7 +304,17 @@ definitions:
         type: string
       note:
         type: integer
-      
+
+  Address:
+    type: object
+    properties:
+      country:
+        type: string
+      city:
+        type: string
+      address:
+        type: string
+
   Garage:
     type: object
     properties:
@@ -270,39 +326,37 @@ definitions:
         type: string
       name:
         type: string
-      country:
-        type: string 
-      city:
-        type: string 
       phone:
         type: string
-      address:
+      description:
         type: string
+      address:
+        $ref: '#/definitions/Address'
       coordinates:
         type: array
-        items: 
+        items:
           type: string
         minItems: 2
         maxItems: 2
-      comments: 
-        type: array 
+      comments:
+        type: array
         items:
           $ref: '#/definitions/Comment'
-  
+
   User:
     type: object
     properties:
-      id: 
+      id:
         type: integer
       username:
         type: string
-      name: 
+      name:
         type: string
       first_name:
         type: string
-      phone: 
+      phone:
         type: string
-      email: 
+      email:
         type: string
       password:
         type: string
@@ -311,7 +365,7 @@ definitions:
         enum:
           - client
           - partner
-  
+
   Error:
     type: object
     properties:

@@ -1,2 +1,2 @@
 # auto_coin_api
-auto coin api
+auto coin api application

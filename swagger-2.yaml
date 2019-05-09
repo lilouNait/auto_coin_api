@@ -1,0 +1,323 @@
+swagger: '2.0'
+info:
+  title: AutoCoinAPI
+  description: A swagger definition of the AutoCoin Project API
+  version: "1.0.0"
+schemes:
+  - https
+  - http
+securityDefinitions:
+  basicAuth:
+    type: basic
+    description: HTTP Basic Authentication.
+security:
+  - basicAuth: []
+basePath: /api/v1
+produces:
+  - application/json
+  
+  
+paths:
+  /garages:
+    get:
+      operationId: getGarage
+      summary: Get all garages.
+      tags:
+        - Garage
+      responses:
+        200:
+          description: Garage response
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Garage'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+    post:
+      operationId: createGarage
+      summary: Create a new Garage.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          description: Garage to be created.
+          schema:
+            $ref: '#/definitions/Garage'
+      tags:
+        - Garage
+      responses:
+        201:
+          description: Create garage response
+          schema:
+            $ref: '#/definitions/Garage'
+    
+  /garages/{id}:
+    get: 
+      operationId: getGarageById
+      summary: Get a Garage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique garage identifier.
+          type: integer
+      tags:
+        - Garage
+      responses:
+        200:
+          description: Garage response
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/Garage'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+                
+    put:
+      operationId: updateGarageById
+      summary: Update a garage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique garage identifier.
+          type: integer
+        - name: body
+          in: body
+          required: true
+          description: Garage data to be updated
+          schema:
+            $ref: '#/definitions/Garage'
+      tags:
+        - Garage
+      responses:
+        200:
+          description: Update garage response
+          schema:
+            $ref: '#/definitions/Garage'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    
+    delete:
+      operationId: deleteGarageById
+      summary: Delete a garage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique garage identifier.
+          type: integer
+      tags:
+        - Garage
+      responses:
+        200:
+          description: Delete garage response
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+          
+      
+  /users:
+    get:
+      operationId: getUser
+      summary: Get all users.
+      tags:
+        - User
+      responses:
+        200:
+          description: User response
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      
+    post:
+      operationId: createUser
+      summary: Create a new User.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          description: User to be created.
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - User
+      responses:
+        201:
+          description: Create garage response
+          schema:
+            $ref: '#/definitions/User'
+            
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    
+  /users/{id}:
+    get: 
+      operationId: getUserById
+      summary: Get a User
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique user identifier.
+          type: integer
+      tags:
+        - User
+      responses:
+        200:
+          description: User response
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+    put:
+      operationId: updateUserById
+      summary: Update a user.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique user identifier.
+          type: integer
+        - name: body
+          in: body
+          required: true
+          description: User data to be updated
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - User
+      responses:
+        200:
+          description: Update user response
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    
+    delete:
+      operationId: deleteUserById
+      summary: Delete a user.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique user identifier.
+          type: integer
+      tags:
+        - User
+      responses:
+        200:
+          description: Delete user response
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'    
+        
+    
+        
+            
+      
+definitions:
+  Comment:
+    type: object
+    properties:
+      client_id:
+        type: integer
+      comment:
+        type: string
+      note:
+        type: integer
+      
+  Garage:
+    type: object
+    properties:
+      id:
+        type: integer
+      id_partner:
+        type: integer
+      partner:
+        type: string
+      name:
+        type: string
+      country:
+        type: string 
+      city:
+        type: string 
+      phone:
+        type: string
+      address:
+        type: string
+      coordinates:
+        type: array
+        items: 
+          type: string
+        minItems: 2
+        maxItems: 2
+      comments: 
+        type: array 
+        items:
+          $ref: '#/definitions/Comment'
+  
+  User:
+    type: object
+    properties:
+      id: 
+        type: integer
+      username:
+        type: string
+      name: 
+        type: string
+      first_name:
+        type: string
+      phone: 
+        type: string
+      email: 
+        type: string
+      password:
+        type: string
+      status:
+        type: string
+        enum:
+          - client
+          - partner
+  
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+      fields:
+        type: string

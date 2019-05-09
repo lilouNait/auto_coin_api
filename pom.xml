@@ -149,38 +149,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- activate the plugin -->
-            <plugin>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>2.3.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <!-- specify the swagger yaml -->
-                            <inputSpec>swagger.yaml</inputSpec>
-
-                            <!-- target to generate java client code -->
-                            <language>spring</language>
-
-                            <!-- hint: if you want to generate java server code, e.g. based on Spring Boot,
-                                 you can use the following target: <language>spring</language> -->
-
-                            <!-- pass any necessary config options -->
-                            <configOptions>
-                                <output>target/generated-sources</output>
-                                <dateLibrary>joda</dateLibrary>
-                            </configOptions>
-
-                            <!-- override the default library to jersey2 -->
-                            <library>spring-boot</library>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>

@@ -298,6 +298,8 @@ definitions:
   Comment:
     type: object
     properties:
+      id:
+        type: integer
       client_id:
         type: integer
       comment:
@@ -308,6 +310,8 @@ definitions:
   Address:
     type: object
     properties:
+      id:
+        type: integer
       country:
         type: string
       city:

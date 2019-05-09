@@ -23,7 +23,7 @@ import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:10:30.316+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:50:43.350+02:00")
 
 @Controller
 public class GaragesApiController implements GaragesApi {
@@ -44,7 +44,7 @@ public class GaragesApiController implements GaragesApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Garage>(objectMapper.readValue("{  \"id_partner\" : 6,  \"address\" : {    \"country\" : \"country\",    \"address\" : \"address\",    \"city\" : \"city\"  },  \"comments\" : [ {    \"note\" : 5,    \"comment\" : \"comment\",    \"client_id\" : 1  }, {    \"note\" : 5,    \"comment\" : \"comment\",    \"client_id\" : 1  } ],  \"partner\" : \"partner\",  \"phone\" : \"phone\",  \"name\" : \"name\",  \"coordinates\" : [ \"coordinates\", \"coordinates\" ],  \"description\" : \"description\",  \"id\" : 0}", Garage.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Garage>(objectMapper.readValue("{  \"id_partner\" : 6,  \"address\" : {    \"country\" : \"country\",    \"address\" : \"address\",    \"city\" : \"city\",    \"id\" : 1  },  \"comments\" : [ {    \"note\" : 2,    \"comment\" : \"comment\",    \"id\" : 5,    \"client_id\" : 5  }, {    \"note\" : 2,    \"comment\" : \"comment\",    \"id\" : 5,    \"client_id\" : 5  } ],  \"partner\" : \"partner\",  \"phone\" : \"phone\",  \"name\" : \"name\",  \"coordinates\" : [ \"coordinates\", \"coordinates\" ],  \"description\" : \"description\",  \"id\" : 0}", Garage.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Garage>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -63,7 +63,7 @@ public class GaragesApiController implements GaragesApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<InlineResponse200>(objectMapper.readValue("{  \"data\" : [ {    \"id_partner\" : 6,    \"address\" : {      \"country\" : \"country\",      \"address\" : \"address\",      \"city\" : \"city\"    },    \"comments\" : [ {      \"note\" : 5,      \"comment\" : \"comment\",      \"client_id\" : 1    }, {      \"note\" : 5,      \"comment\" : \"comment\",      \"client_id\" : 1    } ],    \"partner\" : \"partner\",    \"phone\" : \"phone\",    \"name\" : \"name\",    \"coordinates\" : [ \"coordinates\", \"coordinates\" ],    \"description\" : \"description\",    \"id\" : 0  }, {    \"id_partner\" : 6,    \"address\" : {      \"country\" : \"country\",      \"address\" : \"address\",      \"city\" : \"city\"    },    \"comments\" : [ {      \"note\" : 5,      \"comment\" : \"comment\",      \"client_id\" : 1    }, {      \"note\" : 5,      \"comment\" : \"comment\",      \"client_id\" : 1    } ],    \"partner\" : \"partner\",    \"phone\" : \"phone\",    \"name\" : \"name\",    \"coordinates\" : [ \"coordinates\", \"coordinates\" ],    \"description\" : \"description\",    \"id\" : 0  } ]}", InlineResponse200.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<InlineResponse200>(objectMapper.readValue("{  \"data\" : [ {    \"id_partner\" : 6,    \"address\" : {      \"country\" : \"country\",      \"address\" : \"address\",      \"city\" : \"city\",      \"id\" : 1    },    \"comments\" : [ {      \"note\" : 2,      \"comment\" : \"comment\",      \"id\" : 5,      \"client_id\" : 5    }, {      \"note\" : 2,      \"comment\" : \"comment\",      \"id\" : 5,      \"client_id\" : 5    } ],    \"partner\" : \"partner\",    \"phone\" : \"phone\",    \"name\" : \"name\",    \"coordinates\" : [ \"coordinates\", \"coordinates\" ],    \"description\" : \"description\",    \"id\" : 0  }, {    \"id_partner\" : 6,    \"address\" : {      \"country\" : \"country\",      \"address\" : \"address\",      \"city\" : \"city\",      \"id\" : 1    },    \"comments\" : [ {      \"note\" : 2,      \"comment\" : \"comment\",      \"id\" : 5,      \"client_id\" : 5    }, {      \"note\" : 2,      \"comment\" : \"comment\",      \"id\" : 5,      \"client_id\" : 5    } ],    \"partner\" : \"partner\",    \"phone\" : \"phone\",    \"name\" : \"name\",    \"coordinates\" : [ \"coordinates\", \"coordinates\" ],    \"description\" : \"description\",    \"id\" : 0  } ]}", InlineResponse200.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<InlineResponse200>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -77,7 +77,7 @@ public class GaragesApiController implements GaragesApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<InlineResponse2001>(objectMapper.readValue("{  \"data\" : {    \"id_partner\" : 6,    \"address\" : {      \"country\" : \"country\",      \"address\" : \"address\",      \"city\" : \"city\"    },    \"comments\" : [ {      \"note\" : 5,      \"comment\" : \"comment\",      \"client_id\" : 1    }, {      \"note\" : 5,      \"comment\" : \"comment\",      \"client_id\" : 1    } ],    \"partner\" : \"partner\",    \"phone\" : \"phone\",    \"name\" : \"name\",    \"coordinates\" : [ \"coordinates\", \"coordinates\" ],    \"description\" : \"description\",    \"id\" : 0  }}", InlineResponse2001.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<InlineResponse2001>(objectMapper.readValue("{  \"data\" : {    \"id_partner\" : 6,    \"address\" : {      \"country\" : \"country\",      \"address\" : \"address\",      \"city\" : \"city\",      \"id\" : 1    },    \"comments\" : [ {      \"note\" : 2,      \"comment\" : \"comment\",      \"id\" : 5,      \"client_id\" : 5    }, {      \"note\" : 2,      \"comment\" : \"comment\",      \"id\" : 5,      \"client_id\" : 5    } ],    \"partner\" : \"partner\",    \"phone\" : \"phone\",    \"name\" : \"name\",    \"coordinates\" : [ \"coordinates\", \"coordinates\" ],    \"description\" : \"description\",    \"id\" : 0  }}", InlineResponse2001.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<InlineResponse2001>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -91,7 +91,7 @@ public class GaragesApiController implements GaragesApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Garage>(objectMapper.readValue("{  \"id_partner\" : 6,  \"address\" : {    \"country\" : \"country\",    \"address\" : \"address\",    \"city\" : \"city\"  },  \"comments\" : [ {    \"note\" : 5,    \"comment\" : \"comment\",    \"client_id\" : 1  }, {    \"note\" : 5,    \"comment\" : \"comment\",    \"client_id\" : 1  } ],  \"partner\" : \"partner\",  \"phone\" : \"phone\",  \"name\" : \"name\",  \"coordinates\" : [ \"coordinates\", \"coordinates\" ],  \"description\" : \"description\",  \"id\" : 0}", Garage.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Garage>(objectMapper.readValue("{  \"id_partner\" : 6,  \"address\" : {    \"country\" : \"country\",    \"address\" : \"address\",    \"city\" : \"city\",    \"id\" : 1  },  \"comments\" : [ {    \"note\" : 2,    \"comment\" : \"comment\",    \"id\" : 5,    \"client_id\" : 5  }, {    \"note\" : 2,    \"comment\" : \"comment\",    \"id\" : 5,    \"client_id\" : 5  } ],  \"partner\" : \"partner\",  \"phone\" : \"phone\",  \"name\" : \"name\",  \"coordinates\" : [ \"coordinates\", \"coordinates\" ],  \"description\" : \"description\",  \"id\" : 0}", Garage.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Garage>(HttpStatus.INTERNAL_SERVER_ERROR);

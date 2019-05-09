@@ -10,6 +10,11 @@ import io.swagger.model.Comment;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -17,9 +22,10 @@ import javax.validation.constraints.*;
  * Garage
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:10:30.316+02:00")
-
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:50:43.350+02:00")
+@Entity
 public class Garage   {
+  @Id
   @JsonProperty("id")
   private Integer id = null;
 
@@ -38,13 +44,16 @@ public class Garage   {
   @JsonProperty("description")
   private String description = null;
 
+  @OneToOne
   @JsonProperty("address")
   private Address address = null;
 
+  @ElementCollection
   @JsonProperty("coordinates")
   @Valid
   private List<String> coordinates = null;
 
+  @ElementCollection
   @JsonProperty("comments")
   @Valid
   private List<Comment> comments = null;

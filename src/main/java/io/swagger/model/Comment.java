@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,9 +16,13 @@ import javax.validation.constraints.*;
  * Comment
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:10:30.316+02:00")
-
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:50:43.350+02:00")
+@Entity
 public class Comment   {
+  @Id
+  @JsonProperty("id")
+  private Integer id = null;
+
   @JsonProperty("client_id")
   private Integer clientId = null;
 
@@ -24,6 +31,26 @@ public class Comment   {
 
   @JsonProperty("note")
   private Integer note = null;
+
+  public Comment id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   public Comment clientId(Integer clientId) {
     this.clientId = clientId;
@@ -95,14 +122,15 @@ public class Comment   {
       return false;
     }
     Comment comment = (Comment) o;
-    return Objects.equals(this.clientId, comment.clientId) &&
+    return Objects.equals(this.id, comment.id) &&
+        Objects.equals(this.clientId, comment.clientId) &&
         Objects.equals(this.comment, comment.comment) &&
         Objects.equals(this.note, comment.note);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, comment, note);
+    return Objects.hash(id, clientId, comment, note);
   }
 
   @Override
@@ -110,6 +138,7 @@ public class Comment   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Comment {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
     sb.append("    note: ").append(toIndentedString(note)).append("\n");

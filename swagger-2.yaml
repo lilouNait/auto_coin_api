@@ -16,6 +16,13 @@ paths:
     post:
       operationId: login
       summary: Log user
+      parameters:
+        - name: body
+          in: body
+          required: true
+          description: User to connect.
+          schema:
+            $ref: '#/definitions/User'
       tags:
         - Login
       responses:

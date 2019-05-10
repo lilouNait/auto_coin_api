@@ -1,11 +1,10 @@
 package io.swagger.api;
 
-import io.swagger.model.Error;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.ApiParam;
 import io.swagger.model.InlineResponse2002;
 import io.swagger.model.InlineResponse2003;
 import io.swagger.model.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,16 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.*;
-import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
+
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:50:43.350+02:00")
 
 @Controller
@@ -40,7 +35,7 @@ public class UsersApiController implements UsersApi {
         this.request = request;
     }
 
-    public ResponseEntity<User> createUser(@ApiParam(value = "User to be created." ,required=true )  @Valid @RequestBody User body) {
+    public ResponseEntity<User> createUser(@ApiParam(value = "User to be created.", required = true) @Valid @RequestBody User body) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -54,12 +49,12 @@ public class UsersApiController implements UsersApi {
         return new ResponseEntity<User>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> deleteUserById(@ApiParam(value = "Unique user identifier.",required=true) @PathVariable("id") Integer id) {
+    public ResponseEntity<Void> deleteUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<InlineResponse2002> getUser(@ApiParam(value = "Search by name.") @Valid @RequestParam(value = "Search by name", required = false) String searchByName,@ApiParam(value = "Search by username.") @Valid @RequestParam(value = "username", required = false) String username,@ApiParam(value = "Search by email.") @Valid @RequestParam(value = "email", required = false) String email,@ApiParam(value = "Search by status.") @Valid @RequestParam(value = "status", required = false) String status) {
+    public ResponseEntity<InlineResponse2002> getUser(@ApiParam(value = "Search by name.") @Valid @RequestParam(value = "Search by name", required = false) String searchByName, @ApiParam(value = "Search by username.") @Valid @RequestParam(value = "username", required = false) String username, @ApiParam(value = "Search by email.") @Valid @RequestParam(value = "email", required = false) String email, @ApiParam(value = "Search by status.") @Valid @RequestParam(value = "status", required = false) String status) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -73,7 +68,7 @@ public class UsersApiController implements UsersApi {
         return new ResponseEntity<InlineResponse2002>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<InlineResponse2003> getUserById(@ApiParam(value = "Unique user identifier.",required=true) @PathVariable("id") Integer id) {
+    public ResponseEntity<InlineResponse2003> getUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -87,7 +82,7 @@ public class UsersApiController implements UsersApi {
         return new ResponseEntity<InlineResponse2003>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<User> updateUserById(@ApiParam(value = "Unique user identifier.",required=true) @PathVariable("id") Integer id,@ApiParam(value = "User data to be updated" ,required=true )  @Valid @RequestBody User body) {
+    public ResponseEntity<User> updateUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "User data to be updated", required = true) @Valid @RequestBody User body) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {

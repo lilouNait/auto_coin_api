@@ -5,6 +5,7 @@
  */
 package io.swagger.api;
 
+import io.swagger.Exception.ApiException;
 import io.swagger.annotations.*;
 import io.swagger.model.Error;
 import io.swagger.model.InlineResponse2002;
@@ -27,7 +28,7 @@ public interface UsersApi {
     @RequestMapping(value = "/users",
             produces = {"application/json"},
             method = RequestMethod.POST)
-    ResponseEntity<User> createUser(@ApiParam(value = "User to be created.", required = true) @Valid @RequestBody User body);
+    ResponseEntity<User> createUser(@ApiParam(value = "User to be created.", required = true) @Valid @RequestBody User body) throws Exception;
 
 
     @ApiOperation(value = "Delete a user.", nickname = "deleteUserById", notes = "", tags = {"User",})
@@ -37,7 +38,7 @@ public interface UsersApi {
     @RequestMapping(value = "/users/{id}",
             produces = {"application/json"},
             method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id);
+    ResponseEntity<Void> deleteUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id) throws ApiException;
 
 
     @ApiOperation(value = "Get all users.", nickname = "getUser", notes = "", response = InlineResponse2002.class, tags = {"User",})
@@ -57,7 +58,7 @@ public interface UsersApi {
     @RequestMapping(value = "/users/{id}",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<InlineResponse2003> getUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id);
+    ResponseEntity<InlineResponse2003> getUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id) throws ApiException;
 
 
     @ApiOperation(value = "Update a user.", nickname = "updateUserById", notes = "", response = User.class, tags = {"User",})
@@ -67,6 +68,6 @@ public interface UsersApi {
     @RequestMapping(value = "/users/{id}",
             produces = {"application/json"},
             method = RequestMethod.PUT)
-    ResponseEntity<User> updateUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "User data to be updated", required = true) @Valid @RequestBody User body);
+    ResponseEntity<User> updateUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "User data to be updated", required = true) @Valid @RequestBody User body) throws ApiException;
 
 }

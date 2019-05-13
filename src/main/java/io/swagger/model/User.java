@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -25,23 +22,31 @@ public class User {
     @JsonProperty("id")
     private Integer id = null;
 
+    @Column(unique = true, nullable = false)
     @JsonProperty("username")
     private String username = null;
 
+    @Column(nullable = false)
     @JsonProperty("name")
     private String name = null;
 
+    @Column(nullable = false)
     @JsonProperty("first_name")
     private String firstName = null;
 
+    @Column(nullable = false)
     @JsonProperty("phone")
     private String phone = null;
 
+    @Column(nullable = false)
     @JsonProperty("email")
     private String email = null;
 
+    @Column(nullable = false)
     @JsonProperty("password")
     private String password = null;
+
+    @Column(nullable = false)
     @JsonProperty("status")
     private StatusEnum status = null;
 

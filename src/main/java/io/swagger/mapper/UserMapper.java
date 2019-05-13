@@ -5,10 +5,15 @@ import io.swagger.model.InlineResponse2002;
 import io.swagger.model.InlineResponse2003;
 import io.swagger.model.User;
 import io.swagger.repository.UserDao;
+import io.swagger.repository.specification.SearchCriteria;
+import io.swagger.repository.specification.UserSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
+
 
 public class UserMapper {
 
@@ -20,6 +25,7 @@ public class UserMapper {
 
     public User createUser(@Valid User body) throws Exception {
         try {
+
             userDao.save(body);
             return body;
         } catch (Exception e) {
@@ -36,8 +42,24 @@ public class UserMapper {
     }
 
     public InlineResponse2002 getUser(@Valid String searchByName, @Valid String username, @Valid String email, @Valid String status) {
+        UserSpecification spec1 = null;
+        UserSpecification spec2 = null;
+        UserSpecification spec3 = null;
+        UserSpecification spec4 = null;
+        if (searchByName != null) {
+            spec1 = new UserSpecification(new SearchCriteria("name", ":", searchByName));
+        }
+        if (username != null) {
+            spec2 = new UserSpecification(new SearchCriteria("username", ":", username));
+        }
+        if (email != null) {
+            spec3 = new UserSpecification(new SearchCriteria("email", ":", email));
+        }
+        if (status != null) {
+            spec4 = new UserSpecification(new SearchCriteria("status", ":", User.StatusEnum.fromValue(status)));
+        }
         InlineResponse2002 inlineResponse2002 = new InlineResponse2002();
-        inlineResponse2002.setData(userDao.findAll());
+        inlineResponse2002.setData(userDao.findAll(Specification.where(spec1).and(spec2).and(spec3).and(spec4)));
         return inlineResponse2002;
     }
 
@@ -46,7 +68,7 @@ public class UserMapper {
         if (userDao.existsById(id)) {
             Optional<User> user = userDao.findById(id);
             InlineResponse2003 inlineResponse2003 = new InlineResponse2003();
-            inlineResponse2003.setData(user.get());
+            user.ifPresent(inlineResponse2003::setData);
             return inlineResponse2003;
         } else throw new ApiException(404, "User not Found");
     }
@@ -57,6 +79,17 @@ public class UserMapper {
             userDao.save(body);
             return body;
         } else throw new ApiException(404, "User not Found");
+    }
+
+    public void login(User body) throws ApiException {
+        UserSpecification spec2 = new UserSpecification(new SearchCriteria("username", ":", body.getUsername()));
+        List<User> users = userDao.findAll(Specification.where(spec2));
+        if (!(users.isEmpty())) {
+            if (users.get(0).getPassword().equals(body.getPassword())) {
+                return;
+            }
+        }
+        throw new ApiException(401, "Bad Credentials");
     }
 
 }

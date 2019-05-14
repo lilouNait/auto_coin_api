@@ -2,7 +2,6 @@ package io.swagger.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -17,8 +16,8 @@ public class SwaggerDocumentationConfig {
 
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("AutoCoinAPI")
-            .description("A swagger definition of the AutoCoin Project API")
+                .title("GarageCornerAPI")
+                .description("A swagger definition of the GarageCorner Project API")
             .license("")
             .licenseUrl("http://unlicense.org")
             .termsOfServiceUrl("")

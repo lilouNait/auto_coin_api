@@ -25,7 +25,11 @@ public class UserMapper {
 
     public User createUser(@Valid User body) throws Exception {
         try {
-
+            if (!userDao.findAll(Specification.where(new UserSpecification(new SearchCriteria("username", ":",
+                    body.getUsername())))).isEmpty()) {
+                throw new ApiException(400, "Username already exists");
+            }
+            body.setId(null);
             userDao.save(body);
             return body;
         } catch (Exception e) {
@@ -41,13 +45,13 @@ public class UserMapper {
 
     }
 
-    public InlineResponse2002 getUser(@Valid String searchByName, @Valid String username, @Valid String email, @Valid String status) {
+    public InlineResponse2002 getUser(@Valid String name, @Valid String username, @Valid String email, @Valid String status) {
         UserSpecification spec1 = null;
         UserSpecification spec2 = null;
         UserSpecification spec3 = null;
         UserSpecification spec4 = null;
-        if (searchByName != null) {
-            spec1 = new UserSpecification(new SearchCriteria("name", ":", searchByName));
+        if (name != null) {
+            spec1 = new UserSpecification(new SearchCriteria("name", ":", name));
         }
         if (username != null) {
             spec2 = new UserSpecification(new SearchCriteria("username", ":", username));
@@ -75,9 +79,11 @@ public class UserMapper {
 
     public User updateUserById(Integer id, @Valid User body) throws ApiException {
         if (id.equals(body.getId()) && userDao.existsById(id)) {
-            userDao.deleteById(id);
             userDao.save(body);
-            return body;
+            Optional<User> user = userDao.findById(id);
+            if (user.isPresent()) {
+                return user.get();
+            } else throw new ApiException(400, "Bad Request");
         } else throw new ApiException(404, "User not Found");
     }
 

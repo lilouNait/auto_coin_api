@@ -1,3 +1,5 @@
+Feature: User feature
+
 Scenario: Testing the exact response of a GET endpoint
 Given url 'http://localhost:8080/user/get'
 When method GET

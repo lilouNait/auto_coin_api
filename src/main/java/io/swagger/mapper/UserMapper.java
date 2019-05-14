@@ -7,6 +7,7 @@ import io.swagger.model.User;
 import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.SearchCriteria;
 import io.swagger.repository.specification.UserSpecification;
+import io.swagger.security.MD5Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -29,6 +30,7 @@ public class UserMapper {
                     body.getUsername())))).isEmpty()) {
                 throw new ApiException(400, "Username already exists");
             }
+            body.setPassword(MD5Hashing.hash(body.getPassword()));
             body.setId(null);
             userDao.save(body);
             return body;
@@ -79,8 +81,14 @@ public class UserMapper {
 
     public User updateUserById(Integer id, @Valid User body) throws ApiException {
         if (id.equals(body.getId()) && userDao.existsById(id)) {
-            userDao.save(body);
             Optional<User> user = userDao.findById(id);
+            if (user.isPresent()) {
+                if (!(user.get().getPassword().equals(body.getPassword()))) {
+                    body.setPassword(MD5Hashing.hash(body.getPassword()));
+                }
+            }
+            userDao.save(body);
+            user = userDao.findById(id);
             if (user.isPresent()) {
                 return user.get();
             } else throw new ApiException(400, "Bad Request");
@@ -91,7 +99,7 @@ public class UserMapper {
         UserSpecification spec2 = new UserSpecification(new SearchCriteria("username", ":", body.getUsername()));
         List<User> users = userDao.findAll(Specification.where(spec2));
         if (!(users.isEmpty())) {
-            if (users.get(0).getPassword().equals(body.getPassword())) {
+            if (MD5Hashing.hash(body.getPassword()).equals(users.get(0).getPassword())) {
                 return;
             }
         }

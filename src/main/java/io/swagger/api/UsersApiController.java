@@ -53,10 +53,10 @@ public class UsersApiController implements UsersApi {
         } else return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<InlineResponse2002> getUser(@ApiParam(value = "Search by name.") @Valid @RequestParam(value = "Search by name", required = false) String searchByName, @ApiParam(value = "Search by username.") @Valid @RequestParam(value = "username", required = false) String username, @ApiParam(value = "Search by email.") @Valid @RequestParam(value = "email", required = false) String email, @ApiParam(value = "Search by status.") @Valid @RequestParam(value = "status", required = false) String status) {
+    public ResponseEntity<InlineResponse2002> getUser(@ApiParam(value = "Search by name.") @Valid @RequestParam(value = "name", required = false) String name, @ApiParam(value = "Search by username.") @Valid @RequestParam(value = "username", required = false) String username, @ApiParam(value = "Search by email.") @Valid @RequestParam(value = "email", required = false) String email, @ApiParam(value = "Search by status.") @Valid @RequestParam(value = "status", required = false) String status) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<InlineResponse2002>(userMapper.getUser(searchByName, username, email, status), HttpStatus.OK);
+            return new ResponseEntity<InlineResponse2002>(userMapper.getUser(name, username, email, status), HttpStatus.OK);
         } else return new ResponseEntity<InlineResponse2002>(HttpStatus.BAD_REQUEST);
     }
 

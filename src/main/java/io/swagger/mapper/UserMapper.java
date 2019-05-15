@@ -7,6 +7,7 @@ import io.swagger.model.User;
 import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.SearchCriteria;
 import io.swagger.repository.specification.UserSpecification;
+import io.swagger.security.MD5Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -25,7 +26,12 @@ public class UserMapper {
 
     public User createUser(@Valid User body) throws Exception {
         try {
-
+            if (!userDao.findAll(Specification.where(new UserSpecification(new SearchCriteria("username", ":",
+                    body.getUsername())))).isEmpty()) {
+                throw new ApiException(400, "Username already exists");
+            }
+            body.setPassword(MD5Hashing.hash(body.getPassword()));
+            body.setId(null);
             userDao.save(body);
             return body;
         } catch (Exception e) {
@@ -41,13 +47,13 @@ public class UserMapper {
 
     }
 
-    public InlineResponse2002 getUser(@Valid String searchByName, @Valid String username, @Valid String email, @Valid String status) {
+    public InlineResponse2002 getUser(@Valid String name, @Valid String username, @Valid String email, @Valid String status) {
         UserSpecification spec1 = null;
         UserSpecification spec2 = null;
         UserSpecification spec3 = null;
         UserSpecification spec4 = null;
-        if (searchByName != null) {
-            spec1 = new UserSpecification(new SearchCriteria("name", ":", searchByName));
+        if (name != null) {
+            spec1 = new UserSpecification(new SearchCriteria("name", ":", name));
         }
         if (username != null) {
             spec2 = new UserSpecification(new SearchCriteria("username", ":", username));
@@ -75,9 +81,17 @@ public class UserMapper {
 
     public User updateUserById(Integer id, @Valid User body) throws ApiException {
         if (id.equals(body.getId()) && userDao.existsById(id)) {
-            userDao.deleteById(id);
+            Optional<User> user = userDao.findById(id);
+            if (user.isPresent()) {
+                if (!(user.get().getPassword().equals(body.getPassword()))) {
+                    body.setPassword(MD5Hashing.hash(body.getPassword()));
+                }
+            }
             userDao.save(body);
-            return body;
+            user = userDao.findById(id);
+            if (user.isPresent()) {
+                return user.get();
+            } else throw new ApiException(400, "Bad Request");
         } else throw new ApiException(404, "User not Found");
     }
 
@@ -85,7 +99,7 @@ public class UserMapper {
         UserSpecification spec2 = new UserSpecification(new SearchCriteria("username", ":", body.getUsername()));
         List<User> users = userDao.findAll(Specification.where(spec2));
         if (!(users.isEmpty())) {
-            if (users.get(0).getPassword().equals(body.getPassword())) {
+            if (MD5Hashing.hash(body.getPassword()).equals(users.get(0).getPassword())) {
                 return;
             }
         }

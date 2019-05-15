@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-public class UserSpecification implements Specification<User> {
+public class UserSpecification implements org.springframework.data.jpa.domain.Specification<User> {
 
     private SearchCriteria criteria;
 

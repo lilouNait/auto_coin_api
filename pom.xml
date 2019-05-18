@@ -19,7 +19,6 @@
         <junit-version>4.8.1</junit-version>
     </properties>
     <repositories>
-        <!-- ... other repository elements ... -->
         <repository>
             <snapshots>
                 <enabled>false</enabled>
@@ -179,6 +178,14 @@
             <version>1.2.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.github.swagger2markup/swagger2markup -->
+        <dependency>
+            <groupId>io.github.swagger2markup</groupId>
+            <artifactId>swagger2markup</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+
     </dependencies>
     <build>
         <plugins>
@@ -193,6 +200,65 @@
                     <execution>
                         <goals>
                             <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.github.swagger2markup</groupId>
+                <artifactId>swagger2markup-maven-plugin</artifactId>
+                <version>1.3.1</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>convertSwagger2markup</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <swaggerInput>./documentation/swagger.json</swaggerInput>
+                    <outputFile>./documentation/source/DocumentationAPI</outputFile>
+                    <markupLanguage>ascii</markupLanguage>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>1.5.8</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>./documentation/source/</sourceDirectory>
+                    <outputDirectory>./documentation</outputDirectory>
+                    <backend>html</backend>
+                    <doctype>book</doctype>
+                    <sourceHighlighter>coderay</sourceHighlighter>
+                    <attributes>
+                        <toc>left</toc>
+                        <coderay-css>style</coderay-css>
+                    </attributes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                    <outputDirectory>./documentation/javadoc</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>

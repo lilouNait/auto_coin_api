@@ -16,3 +16,7 @@ API.
 * We have choosen to use the Framework SpringBoot 2.1.4. to expose the REST API. All the datas are stored using 
 an h2 base. The particularity of the h2 base is that it is all managed by the Java Framework and doesn't require other installation 
 
+## Technical Documentation
+
+* All the technical documentation can be found in the documentation folder and is generated on application install.
+

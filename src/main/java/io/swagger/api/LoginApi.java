@@ -1,6 +1,5 @@
 package io.swagger.api;
 
-import io.swagger.Exception.ApiException;
 import io.swagger.annotations.*;
 import io.swagger.model.User;
 import org.springframework.http.ResponseEntity;
@@ -20,5 +19,5 @@ public interface LoginApi {
     @RequestMapping(value = "/login",
             produces = {"application/json"},
             method = RequestMethod.POST)
-    ResponseEntity<Void> login(@ApiParam(value = "User to connect.", required = true) @Valid @RequestBody User body) throws ApiException;
+    ResponseEntity<Void> login(@ApiParam(value = "User to connect.", required = true) @Valid @RequestBody User body) throws Exception;
 }

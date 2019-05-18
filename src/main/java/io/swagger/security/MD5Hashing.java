@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MD5Hashing {
 
-    public static String hash(String passwordToHash) {
+    public static String hash(String passwordToHash) throws Exception {
         String generatedPassword;
         try {
             // Create MessageDigest instance for MD5
@@ -26,6 +26,6 @@ public class MD5Hashing {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return null;
+        throw new Exception("Unable to hash password");
     }
 }

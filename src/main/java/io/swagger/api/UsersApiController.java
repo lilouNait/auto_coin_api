@@ -69,7 +69,7 @@ public class UsersApiController implements UsersApi {
         }
     }
 
-    public ResponseEntity<User> updateUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "User data to be updated", required = true) @Valid @RequestBody User body) throws ApiException {
+    public ResponseEntity<User> updateUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "User data to be updated", required = true) @Valid @RequestBody User body) throws Exception {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             return new ResponseEntity<User>(userMapper.updateUserById(id, body), HttpStatus.OK);

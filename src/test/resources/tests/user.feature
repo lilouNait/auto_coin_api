@@ -1,5 +1,9 @@
 Feature: User feature
 
+Background:
+* def data = read('../data.json')
+* configure headers = { Accept: 'application/json' }
+
 Scenario: Testing the exact response of a GET endpoint
 Given url 'http://localhost:9090/api/v1/users'
 When method GET
@@ -32,7 +36,7 @@ And match $ == {phone:"#number"}
 
 Scenario: Testing a POST endpoint with request body
 Given url 'http://localhost:9090/api/v1/users'
-And request { id: '12' , name: 'Jonny'}
+And request data[1]
 When method POST
-Then status 200
+Then status 201
 And match $ contains {id:"#notnull"}

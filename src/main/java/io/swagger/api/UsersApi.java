@@ -63,6 +63,6 @@ public interface UsersApi {
     @RequestMapping(value = "/users/{id}",
             produces = {"application/json"},
             method = RequestMethod.PUT)
-    ResponseEntity<User> updateUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "User data to be updated", required = true) @Valid @RequestBody User body) throws ApiException;
+    ResponseEntity<User> updateUserById(@ApiParam(value = "Unique user identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "User data to be updated", required = true) @Valid @RequestBody User body) throws Exception;
 
 }

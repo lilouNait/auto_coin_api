@@ -1,9 +1,11 @@
 package io.swagger.mapper;
 
 import io.swagger.Exception.ApiException;
+import io.swagger.model.Garage;
 import io.swagger.model.InlineResponse2002;
 import io.swagger.model.InlineResponse2003;
 import io.swagger.model.User;
+import io.swagger.repository.GarageDao;
 import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.SearchCriteria;
 import io.swagger.repository.specification.UserSpecification;
@@ -15,11 +17,13 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-
 public class UserMapper {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private GarageDao garageDao;
 
     public UserMapper() {
     }
@@ -42,6 +46,12 @@ public class UserMapper {
     public void deleteUserById(Integer id) throws ApiException {
         if (userDao.existsById(id)) {
             userDao.deleteById(id);
+            List<Garage> list = garageDao.findAll();
+            for (Garage garage : list) {
+                if (garage.getIdPartner().equals(id)) {
+                    garageDao.deleteById(garage.getId());
+                }
+            }
         }
         throw new ApiException(404, "User not found");
 
@@ -79,7 +89,7 @@ public class UserMapper {
         } else throw new ApiException(404, "User not Found");
     }
 
-    public User updateUserById(Integer id, @Valid User body) throws ApiException {
+    public User updateUserById(Integer id, @Valid User body) throws Exception {
         if (id.equals(body.getId()) && userDao.existsById(id)) {
             Optional<User> user = userDao.findById(id);
             if (user.isPresent()) {
@@ -95,7 +105,7 @@ public class UserMapper {
         } else throw new ApiException(404, "User not Found");
     }
 
-    public void login(User body) throws ApiException {
+    public void login(User body) throws Exception {
         UserSpecification spec2 = new UserSpecification(new SearchCriteria("username", ":", body.getUsername()));
         List<User> users = userDao.findAll(Specification.where(spec2));
         if (!(users.isEmpty())) {

@@ -1,7 +1,6 @@
 package io.swagger.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.Exception.ApiException;
 import io.swagger.mapper.UserMapper;
 import io.swagger.model.User;
 import org.slf4j.Logger;
@@ -33,7 +32,7 @@ public class LoginApiController implements LoginApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> login(User body) throws ApiException {
+    public ResponseEntity<Void> login(User body) throws Exception {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             userMapper.login(body);

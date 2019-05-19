@@ -219,7 +219,7 @@
                 <configuration>
                     <swaggerInput>./documentation/swagger.json</swaggerInput>
                     <outputFile>./documentation/source/DocumentationAPI</outputFile>
-                    <markupLanguage>ascii</markupLanguage>
+                    <!--<markupLanguage>ascii</markupLanguage>-->
                 </configuration>
             </plugin>
             <plugin>

@@ -43,7 +43,6 @@ public class Garage {
 
     @OneToOne
     @JsonProperty("address")
-    @Column(nullable = false)
     private Address address = null;
 
     @ElementCollection

@@ -5,6 +5,7 @@
  */
 package io.swagger.api;
 
+import io.swagger.Exception.ApiException;
 import io.swagger.annotations.*;
 import io.swagger.model.Error;
 import io.swagger.model.Garage;
@@ -26,7 +27,7 @@ public interface GaragesApi {
     @RequestMapping(value = "/garages",
             produces = {"application/json"},
             method = RequestMethod.POST)
-    ResponseEntity<Garage> createGarage(@ApiParam(value = "Garage to be created.", required = true) @Valid @RequestBody Garage body);
+    ResponseEntity<Garage> createGarage(@ApiParam(value = "Garage to be created.", required = true) @Valid @RequestBody Garage body) throws Exception;
 
 
     @ApiOperation(value = "Delete a garage.", nickname = "deleteGarageById", notes = "", tags = {"Garage",})
@@ -36,7 +37,7 @@ public interface GaragesApi {
     @RequestMapping(value = "/garages/{id}",
             produces = {"application/json"},
             method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteGarageById(@ApiParam(value = "Unique garage identifier.", required = true) @PathVariable("id") Integer id);
+    ResponseEntity<Void> deleteGarageById(@ApiParam(value = "Unique garage identifier.", required = true) @PathVariable("id") Integer id) throws ApiException;
 
 
     @ApiOperation(value = "Get all garages.", nickname = "getGarage", notes = "", response = InlineResponse200.class, tags = {"Garage",})
@@ -56,7 +57,7 @@ public interface GaragesApi {
     @RequestMapping(value = "/garages/{id}",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<InlineResponse2001> getGarageById(@ApiParam(value = "Unique garage identifier.", required = true) @PathVariable("id") Integer id);
+    ResponseEntity<InlineResponse2001> getGarageById(@ApiParam(value = "Unique garage identifier.", required = true) @PathVariable("id") Integer id) throws ApiException;
 
 
     @ApiOperation(value = "Update a garage.", nickname = "updateGarageById", notes = "", response = Garage.class, tags = {"Garage",})

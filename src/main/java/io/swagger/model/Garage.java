@@ -25,12 +25,14 @@ public class Garage {
     private Integer id = null;
 
     @JsonProperty("id_partner")
+    @Column(nullable = false)
     private Integer idPartner = null;
 
     @JsonProperty("partner")
     private String partner = null;
 
     @JsonProperty("name")
+    @Column(nullable = false)
     private String name = null;
 
     @JsonProperty("phone")
@@ -41,11 +43,13 @@ public class Garage {
 
     @OneToOne
     @JsonProperty("address")
+    @Column(nullable = false)
     private Address address = null;
 
     @ElementCollection
     @JsonProperty("coordinates")
     @Valid
+    @Column(nullable = false)
     private List<String> coordinates = null;
 
     @ElementCollection

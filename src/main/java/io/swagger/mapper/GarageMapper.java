@@ -1,5 +1,6 @@
 package io.swagger.mapper;
 
+import cucumber.api.java.cs.A;
 import io.swagger.Exception.ApiException;
 import io.swagger.model.Garage;
 import io.swagger.model.InlineResponse200;
@@ -73,5 +74,14 @@ public class GarageMapper {
         } else throw new ApiException(404, "Garage not Found");
     }
 
-
+    public Garage updateGarageById(Integer id, @Valid Garage body) throws Exception {
+        if (id.equals((body.getId())) && garageDao.existsById(id)) {
+            Optional<Garage> garage = garageDao.findById(id);
+            garageDao.save(body);
+            garage = garageDao.findById(id);
+            if (garage.isPresent()) {
+                return garage.get();
+            } else throw new ApiException(400, "Bad request");
+        } else throw new ApiException(404, "Garage not found");
+    }
 }

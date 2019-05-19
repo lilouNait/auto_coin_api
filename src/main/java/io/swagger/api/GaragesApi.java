@@ -67,6 +67,6 @@ public interface GaragesApi {
     @RequestMapping(value = "/garages/{id}",
             produces = {"application/json"},
             method = RequestMethod.PUT)
-    ResponseEntity<Garage> updateGarageById(@ApiParam(value = "Unique garage identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "Garage data to be updated", required = true) @Valid @RequestBody Garage body);
+    ResponseEntity<Garage> updateGarageById(@ApiParam(value = "Unique garage identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "Garage data to be updated", required = true) @Valid @RequestBody Garage body) throws Exception;
 
 }

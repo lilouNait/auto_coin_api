@@ -1,0 +1,66 @@
+[
+  {
+    "id":null,
+    "id_partner": 1,
+    "partner": "toto",
+    "name": "otot",
+    "phone": "0901829",
+    "description": "toto",
+    "address": {"id":null, "country": "France", "city": "Bordeaux", "address": "uahbfzuidfshg"},
+    "coordinates": [null,null],
+    "comments":null
+  },
+
+  {
+    "id":null,
+    "id_partner": 1,
+    "partner": "cholo",
+    "name": "choris",
+    "phone": "0556762415",
+    "description": "moto",
+    "address": {"id":null, "country": "France", "city": "Pessac", "address": "12 rue Robert Escarpit"},
+    "coordinates": [null,null],
+    "comments":null
+  },
+
+  {
+    "id":null,
+    "id_partner": 3,
+    "partner": "masala",
+    "name": "ken",
+    "phone": "0903456742",
+    "description": "poids lourd",
+    "address": {"id":null, "country": "France", "city": "Libourne", "address": "45 avenue Aristide Briand"},
+    "coordinates": [null,null],
+    "comments":null
+  },
+
+  {
+    "id":null,
+    "id_partner": 90,
+    "partner": "Garok",
+    "name": "Dangy",
+    "phone": "078643529",
+    "description": "Voiture",
+    "address": {"id":null, "country": "France", "city": "Toulouse", "address": "Boomboom bang bang"},
+    "coordinates": [null,null],
+    "comments":null
+  },
+
+  {
+    "id": 1,
+    "id_partner": 1,
+    "partner": "Garok",
+    "name": "Dangy",
+    "phone": "078643529",
+    "description": "Voiture",
+    "address": {"id":null, "country": "France", "city": "Toulouse", "address": "Boomboom bang bang"},
+    "coordinates": [null,null],
+    "comments": [{
+      "id": null,
+      "client_id": 1,
+      "comment": "Garage top! Recommande vivement.",
+      "note": 4
+    }]
+  }
+]

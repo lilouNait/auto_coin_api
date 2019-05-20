@@ -19,7 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${spring.security.user.name}")
     private String password;
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -27,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic();
+                http.headers().frameOptions().disable();
     }
 
     @Autowired

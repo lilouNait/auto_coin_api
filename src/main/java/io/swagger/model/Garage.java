@@ -25,7 +25,7 @@ public class Garage {
     private Integer id = null;
 
     @JsonProperty("id_partner")
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Integer idPartner = null;
 
     @JsonProperty("partner")

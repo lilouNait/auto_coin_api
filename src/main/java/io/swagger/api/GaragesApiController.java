@@ -10,6 +10,7 @@ import io.swagger.model.InlineResponse2001;
 import io.swagger.repository.GarageDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ import java.io.IOException;
 @Controller
 public class GaragesApiController implements GaragesApi {
 
+    @Autowired
     private GarageMapper garageMapper;
     private static final Logger log = LoggerFactory.getLogger(GaragesApiController.class);
 

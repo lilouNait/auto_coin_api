@@ -1,7 +1,7 @@
 [
   {
     "id": 4,
-    "username": "toto",
+    "username": "rico",
     "name": "popo",
     "first_name": "rako",
     "phone": "0783551755",
@@ -33,7 +33,7 @@
   },
 
   {
-    "id": 6,
+    "id": 7,
     "username": "yphone",
     "name": "jobs",
     "first_name": "steve",
@@ -44,7 +44,7 @@
   },
 
   {
-    "id": 7,
+    "id": 8,
     "username": "simsung",
     "name": "duck",
     "first_name": "sheep",
@@ -55,7 +55,7 @@
   },
 
   {
-    "id": 8,
+    "id": 9,
     "username": "amajohn",
     "name": "amarald",
     "first_name": "john",
@@ -66,7 +66,7 @@
   },
 
   {
-    "id": 9,
+    "id": 10,
     "username": "chucky",
     "name": "chris",
     "first_name": "kentuck",
@@ -77,8 +77,30 @@
   },
 
   {
-    "id": 10,
-    "username": "kentuichswagstylelongshittyusernamemtf",
+    "id": 11,
+    "username": "mtf",
+    "name": "rashid",
+    "first_name": "badouri",
+    "phone": "0557342165",
+    "email": "rashbad@hotmail.com",
+    "password": "humoriste",
+    "status": "client"
+  },
+
+  {
+  "id": 1,
+  "username": "ert",
+  "name": "rashid",
+  "first_name": "badouri",
+  "phone": "0557342165",
+  "email": "rashbad@hotmail.com",
+  "password": "humoriste",
+  "status": "client"
+  },
+
+  {
+    "id": 1,
+    "username": "iphone",
     "name": "rashid",
     "first_name": "badouri",
     "phone": "0557342165",

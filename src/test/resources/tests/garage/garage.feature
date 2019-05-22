@@ -58,11 +58,7 @@ When method GET
 Then status 200
 And match $.data == '#[2]'
 
-Scenario: Testing the response if the filter address return only one value
-Given url 'http://localhost:9090/api/v1/garages?address=Pessac'
-When method GET
-Then status 200
-And match $.data == '#[1]'
+
 
 Scenario: Testing the POST of an invalid partner
 Given url 'http://localhost:9090/api/v1/garages'

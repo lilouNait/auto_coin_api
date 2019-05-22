@@ -38,6 +38,7 @@ public class Garage {
     @JsonProperty("phone")
     private String phone = null;
 
+    @Column(length = 500)
     @JsonProperty("description")
     private String description = null;
 

@@ -2,16 +2,17 @@ package io.swagger.mapper;
 
 import io.swagger.Exception.ApiException;
 import io.swagger.geocode.AddressConverter;
-import io.swagger.model.*;
+import io.swagger.model.Garage;
+import io.swagger.model.InlineResponse200;
+import io.swagger.model.InlineResponse2001;
+import io.swagger.model.User;
 import io.swagger.repository.GarageDao;
 import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.GarageSpecification;
 import io.swagger.repository.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 public class GarageMapper {
@@ -58,9 +59,9 @@ public class GarageMapper {
             spec2 = new GarageSpecification(new SearchCriteria("partner", ":", searchByPartner));
         }
         if (searchByAdress != null) {
-           InlineResponse200 inlineResponse200= new InlineResponse200();
-           inlineResponse200.setData(addressConverter.findNearby(searchByAdress));
-           return inlineResponse200;
+            InlineResponse200 inlineResponse200 = new InlineResponse200();
+            inlineResponse200.setData(addressConverter.findNearby(searchByAdress));
+            return inlineResponse200;
         }
         if (searchByCoordinates != null) {
             spec4 = new GarageSpecification(new SearchCriteria("", ":", searchByCoordinates));
@@ -89,5 +90,5 @@ public class GarageMapper {
             } else throw new ApiException(400, "Bad request");
         } else throw new ApiException(404, "Garage not found");
     }
-    }
+}
 

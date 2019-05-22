@@ -14,16 +14,14 @@ import java.util.List;
 
 public class AddressConverter {
 
+    private final static double AVERAGE_RADIUS_OF_EARTH = 6371;
     @Autowired
     private GarageDao garageDao;
-
     private JOpenCageGeocoder jOpenCageGeocoder;
 
     public AddressConverter(String apiKey) {
         jOpenCageGeocoder = new JOpenCageGeocoder(apiKey);
     }
-
-    private final static double AVERAGE_RADIUS_OF_EARTH = 6371;
 
     private double distFrom(double userLat, double userLng, double venueLat, double venueLng) {
 

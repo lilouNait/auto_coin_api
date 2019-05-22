@@ -10,21 +10,25 @@ import javax.persistence.criteria.Root;
 
 public class GarageSpecification implements Specification<Garage> {
     private SearchCriteria criteria;
-    public GarageSpecification(SearchCriteria criteria){this.criteria = criteria;}
+
+    public GarageSpecification(SearchCriteria criteria) {
+        this.criteria = criteria;
+    }
+
     @Override
     public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder builder) {
-        if(criteria.getOperation().equalsIgnoreCase(">")) {
+        if (criteria.getOperation().equalsIgnoreCase(">")) {
             return builder.greaterThanOrEqualTo(
                     root.get(criteria.getKey()), criteria.getValue().toString());
-        }else if (criteria.getOperation().equalsIgnoreCase("<")) {
+        } else if (criteria.getOperation().equalsIgnoreCase("<")) {
             return builder.lessThanOrEqualTo(
                     root.get(criteria.getKey()), criteria.getValue().toString());
-        }else if (criteria.getOperation().equalsIgnoreCase(":")) {
-            if (root.get(criteria.getKey()).getJavaType() == String.class){
+        } else if (criteria.getOperation().equalsIgnoreCase(":")) {
+            if (root.get(criteria.getKey()).getJavaType() == String.class) {
                 return builder.like(
-                        root.get(criteria.getKey()),"%" + criteria.getValue() + "%");
-            }else {
-                return builder.equal(root.get(criteria.getKey()),criteria.getValue());
+                        root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+            } else {
+                return builder.equal(root.get(criteria.getKey()), criteria.getValue());
             }
         }
         return null;

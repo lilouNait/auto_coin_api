@@ -18,8 +18,11 @@ public class MapperConfig {
     public UserMapper userMapper() {
         return new UserMapper();
     }
+
     @Bean
-    public GarageMapper garageMapper() {return new GarageMapper();}
+    public GarageMapper garageMapper() {
+        return new GarageMapper();
+    }
 
     @Bean
     public AddressConverter addressConverter() {

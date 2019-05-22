@@ -18,20 +18,20 @@ public class SwaggerDocumentationConfig {
         return new ApiInfoBuilder()
                 .title("GarageCornerAPI")
                 .description("A swagger definition of the GarageCorner Project API")
-            .license("")
-            .licenseUrl("http://unlicense.org")
-            .termsOfServiceUrl("")
-            .version("1.0.0")
-            .contact(new Contact("","", ""))
-            .build();
+                .license("")
+                .licenseUrl("http://unlicense.org")
+                .termsOfServiceUrl("")
+                .version("1.0.0")
+                .contact(new Contact("", "", ""))
+                .build();
     }
 
     @Bean
-    public Docket customImplementation(){
+    public Docket customImplementation() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                    .apis(RequestHandlerSelectors.basePackage("io.swagger.api"))
-                    .build()
+                .apis(RequestHandlerSelectors.basePackage("io.swagger.api"))
+                .build()
                 .directModelSubstitute(org.joda.time.LocalDate.class, java.sql.Date.class)
                 .directModelSubstitute(org.joda.time.DateTime.class, java.util.Date.class)
                 .apiInfo(apiInfo());

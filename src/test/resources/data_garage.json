@@ -25,7 +25,7 @@
 
   {
     "id":null,
-    "id_partner": 3,
+    "id_partner": 1,
     "partner": "masala",
     "name": "ken",
     "phone": "0903456742",
@@ -48,7 +48,18 @@
   },
 
   {
-    "id": 1,
+    "id": 4,
+    "username": "rico",
+    "name": "popo",
+    "first_name": "rako",
+    "phone": "0783551755",
+    "email": "ezekrako@gmail.com",
+    "password": "chien",
+    "status": "partner"
+  },
+
+  {
+    "id": 4,
     "id_partner": 1,
     "partner": "Garok",
     "name": "Dangy",

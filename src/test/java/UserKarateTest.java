@@ -3,11 +3,13 @@ import cucumber.api.CucumberOptions;
 import io.swagger.Swagger2SpringBoot;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.DirtiesContext;
 
 
 @RunWith(Karate.class)
-@CucumberOptions(features = "classpath:tests")
-public class ApiKarateTest {
+@CucumberOptions(features = "classpath:tests/user")
+@DirtiesContext
+public class UserKarateTest {
 
     @BeforeClass
     public static void setUp() throws Exception {

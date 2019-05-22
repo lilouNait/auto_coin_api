@@ -52,7 +52,7 @@ public class Garage {
     @Column(nullable = false)
     private List<String> coordinates = null;
 
-    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonProperty("comments")
     @Valid
     private List<Comment> comments = null;

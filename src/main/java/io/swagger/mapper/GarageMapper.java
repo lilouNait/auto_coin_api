@@ -45,8 +45,7 @@ public class GarageMapper {
     public void deleteGarageById(Integer id) throws ApiException {
         if (garageDao.existsById(id)) {
             garageDao.deleteById(id);
-        }
-        throw new ApiException(404, "Garage not found");
+        }else throw new ApiException(404, "Garage not found");
     }
 
     public InlineResponse200 getGarage(@Valid String searchByName, @Valid String searchByPartner, @Valid String searchByAdress, @Valid String searchByCoordinates) {
@@ -79,6 +78,7 @@ public class GarageMapper {
             return inlineResponse2001;
         } else throw new ApiException(404, "Garage not Found");
     }
+
 
     public Garage updateGarageById(Integer id, @Valid Garage body) throws Exception {
         if (id.equals((body.getId())) && garageDao.existsById(id)) {

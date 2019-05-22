@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:50:43.350+02:00")
 
@@ -77,7 +78,7 @@ public class GaragesApiController implements GaragesApi {
                 return new ResponseEntity<InlineResponse2001>(HttpStatus.BAD_REQUEST);
             }
         }
-
+        
     public ResponseEntity<Garage> updateGarageById(@ApiParam(value = "Unique garage identifier.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "Garage data to be updated", required = true) @Valid @RequestBody Garage body) throws Exception {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")){

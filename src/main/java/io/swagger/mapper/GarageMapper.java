@@ -1,6 +1,5 @@
 package io.swagger.mapper;
 
-import cucumber.api.java.cs.A;
 import io.swagger.Exception.ApiException;
 import io.swagger.geocode.AddressConverter;
 import io.swagger.model.*;
@@ -8,13 +7,11 @@ import io.swagger.repository.GarageDao;
 import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.GarageSpecification;
 import io.swagger.repository.specification.SearchCriteria;
-import io.swagger.repository.specification.UserSpecification;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.http.ResponseEntity;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 public class GarageMapper {
@@ -22,30 +19,31 @@ public class GarageMapper {
     @Autowired
     private GarageDao garageDao;
     @Autowired
-    private  UserDao userDao;
+    private UserDao userDao;
     @Autowired
     private AddressConverter addressConverter;
+
     public GarageMapper() {
     }
 
     public Garage createGarage(Garage body) throws Exception {
-        if ((userDao.existsById(body.getIdPartner()))&&(userDao.findById(body.getIdPartner())).get().getStatus().equals(User.StatusEnum.PARTNER)) {
+        if ((userDao.existsById(body.getIdPartner())) && (userDao.findById(body.getIdPartner())).get().getStatus().equals(User.StatusEnum.PARTNER)) {
             try {
                 body.setId(null);
                 body.getAddress().setId(null);
                 garageDao.save(addressConverter.convertGarageAddress(body));
                 return body;
-            } catch (Exception e){
+            } catch (Exception e) {
                 throw new ApiException((400), e.getMessage());
             }
-        }else throw new ApiException(404, "partner not exists");
-        }
+        } else throw new ApiException(404, "partner not exists");
+    }
 
 
     public void deleteGarageById(Integer id) throws ApiException {
         if (garageDao.existsById(id)) {
             garageDao.deleteById(id);
-        }else throw new ApiException(404, "Garage not found");
+        } else throw new ApiException(404, "Garage not found");
     }
 
     public InlineResponse200 getGarage(@Valid String searchByName, @Valid String searchByPartner, @Valid String searchByAdress, @Valid String searchByCoordinates) {
@@ -60,7 +58,9 @@ public class GarageMapper {
             spec2 = new GarageSpecification(new SearchCriteria("partner", ":", searchByPartner));
         }
         if (searchByAdress != null) {
-            spec3 = new GarageSpecification(new SearchCriteria("", ":", searchByAdress));
+           InlineResponse200 inlineResponse200= new InlineResponse200();
+           inlineResponse200.setData(addressConverter.findNearby(searchByAdress));
+           return inlineResponse200;
         }
         if (searchByCoordinates != null) {
             spec4 = new GarageSpecification(new SearchCriteria("", ":", searchByCoordinates));
@@ -79,7 +79,6 @@ public class GarageMapper {
         } else throw new ApiException(404, "Garage not Found");
     }
 
-
     public Garage updateGarageById(Integer id, @Valid Garage body) throws Exception {
         if (id.equals((body.getId())) && garageDao.existsById(id)) {
             Optional<Garage> garage = garageDao.findById(id);
@@ -90,4 +89,5 @@ public class GarageMapper {
             } else throw new ApiException(400, "Bad request");
         } else throw new ApiException(404, "Garage not found");
     }
-}
+    }
+

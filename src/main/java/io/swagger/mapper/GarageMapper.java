@@ -3,10 +3,7 @@ package io.swagger.mapper;
 import cucumber.api.java.cs.A;
 import io.swagger.Exception.ApiException;
 import io.swagger.geocode.AddressConverter;
-import io.swagger.model.Garage;
-import io.swagger.model.InlineResponse200;
-import io.swagger.model.InlineResponse2001;
-import io.swagger.model.InlineResponse2003;
+import io.swagger.model.*;
 import io.swagger.repository.GarageDao;
 import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.GarageSpecification;
@@ -32,7 +29,7 @@ public class GarageMapper {
     }
 
     public Garage createGarage(Garage body) throws Exception {
-        if ((userDao.existsById(body.getIdPartner()))&&(userDao.findById(body.getIdPartner())).get().getStatus().equals("partner")) {
+        if ((userDao.existsById(body.getIdPartner()))&&(userDao.findById(body.getIdPartner())).get().getStatus().equals(User.StatusEnum.PARTNER)) {
             try {
                 body.setId(null);
                 body.getAddress().setId(null);

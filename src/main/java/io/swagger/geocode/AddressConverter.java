@@ -58,7 +58,7 @@ public class AddressConverter {
         List<Garage> nearby = new ArrayList<>();
         for (Garage garage : allGarage) {
             float distance = distFrom(Float.valueOf(coordinates.get(0)), Float.valueOf(coordinates.get(1)), Float.valueOf(garage.getCoordinates().get(0)), Float.valueOf(garage.getCoordinates().get(1)));
-            if (distance < 1000) {
+            if (distance < 40000) {
                 nearby.add(garage);
             }
         }

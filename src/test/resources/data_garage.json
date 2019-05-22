@@ -6,7 +6,12 @@
     "name": "otot",
     "phone": "0901829",
     "description": "toto",
-    "address": {"id":null, "country": "France", "city": "Bordeaux", "address": "uahbfzuidfshg"},
+    "address": {
+      "id": null,
+      "country": "France",
+      "city": "Bordeaux",
+      "address": "Victoire"
+    },
     "coordinates": [null,null],
     "comments":null
   },
@@ -72,6 +77,12 @@
       "client_id": 1,
       "comment": "Garage top! Recommande vivement.",
       "note": 4
+    },
+      {
+        "id": null,
+        "client_id": 1,
+        "comment": "Garage top! Recommande vivement.",
+        "note": 4
     }]
   }
 ]

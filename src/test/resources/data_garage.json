@@ -10,7 +10,7 @@
       "id": null,
       "country": "France",
       "city": "Bordeaux",
-      "address": "Victoire"
+      "address": "87 Rue Leyteire Leyteire"
     },
     "coordinates": [null,null],
     "comments":null
@@ -23,7 +23,12 @@
     "name": "choris",
     "phone": "0556762415",
     "description": "moto",
-    "address": {"id":null, "country": "France", "city": "Pessac", "address": "12 rue Robert Escarpit"},
+    "address": {
+      "id": null,
+      "country": "France",
+      "city": "Bordeaux",
+      "address": "87 Rue Leyteire Leyteire"
+    },
     "coordinates": [null,null],
     "comments":null
   },

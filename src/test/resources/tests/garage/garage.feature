@@ -58,6 +58,12 @@ When method GET
 Then status 200
 And match $.data == '#[2]'
 
+Scenario: Testing the Address Filter of GET
+Given url 'http://localhost:8083/api/v1/garages?address=Bordeaux%20France'
+When method GET
+Then status 200
+And match $.data == '#[1]'
+
 
 Scenario: Testing the POST of an invalid partner
 Given url 'http://localhost:8083/api/v1/garages'

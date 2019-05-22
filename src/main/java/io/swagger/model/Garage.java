@@ -25,7 +25,7 @@ public class Garage {
     private Integer id = null;
 
     @JsonProperty("id_partner")
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private Integer idPartner = null;
 
     @JsonProperty("partner")
@@ -41,8 +41,9 @@ public class Garage {
     @JsonProperty("description")
     private String description = null;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JsonProperty("address")
+    //@Column(nullable = false)
     private Address address = null;
 
     @ElementCollection

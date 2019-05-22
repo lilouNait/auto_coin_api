@@ -7,6 +7,7 @@ import io.swagger.model.InlineResponse200;
 import io.swagger.model.InlineResponse2001;
 import io.swagger.model.InlineResponse2003;
 import io.swagger.repository.GarageDao;
+import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.GarageSpecification;
 import io.swagger.repository.specification.SearchCriteria;
 import io.swagger.repository.specification.UserSpecification;
@@ -22,6 +23,8 @@ public class GarageMapper {
 
     @Autowired
     private GarageDao garageDao;
+    @Autowired
+    private UserDao userDao;
 
     public GarageMapper() {
     }
@@ -40,7 +43,7 @@ public class GarageMapper {
         if (garageDao.existsById(id)) {
             garageDao.deleteById(id);
         }
-        throw new ApiException(400, "Garage not found");
+        throw new ApiException(404, "Garage not found");
     }
 
     public InlineResponse200 getGarage(@Valid String searchByName, @Valid String searchByPartner, @Valid String searchByAdress, @Valid String searchByCoordinates) {

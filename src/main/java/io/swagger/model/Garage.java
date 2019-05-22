@@ -69,8 +69,6 @@ public class Garage {
      **/
     @ApiModelProperty(value = "")
 
-
-
     public Integer getId() {
         return id;
     }

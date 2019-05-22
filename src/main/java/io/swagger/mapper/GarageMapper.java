@@ -24,20 +24,22 @@ public class GarageMapper {
     @Autowired
     private GarageDao garageDao;
     @Autowired
-    private UserDao userDao;
-
+    private  UserDao userDao;
     public GarageMapper() {
     }
 
     public Garage createGarage(Garage body) throws Exception {
-        try {
-            body.setId(null);
-            garageDao.save(body);
-            return body;
-        } catch (Exception e) {
-            throw new ApiException((400), e.getMessage());
+        if ((userDao.existsById(body.getIdPartner()))&&(userDao.findById(body.getIdPartner())).get().getStatus().equals("partner")) {
+            try {
+                body.setId(null);
+                garageDao.save(body);
+                return body;
+            } catch (Exception e) {
+                throw new ApiException((400), e.getMessage());
+            }
+        }else throw new ApiException(404, "partner not exists");
         }
-    }
+
 
     public void deleteGarageById(Integer id) throws ApiException {
         if (garageDao.existsById(id)) {

@@ -1,0 +1,663 @@
+= GarageCornerAPI
+
+
+[[_overview]]
+== Overview
+A swagger definition of the GarageCorner Project API
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : 1.0.0
+
+
+=== License information
+[%hardbreaks]
+__License URL__ : http://unlicense.org
+__Terms of service__ : null
+
+
+=== URI scheme
+[%hardbreaks]
+__Host__ : localhost
+__BasePath__ : /api/v1
+
+
+=== Tags
+
+* garages-api-controller : the garages API
+* login-api-controller : the login API
+* users-api-controller : the users API
+
+
+
+
+[[_paths]]
+== Paths
+
+[[_creategarage]]
+=== Create a new Garage.
+....
+POST /garages
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**body** +
+__required__|Garage to be created.|<<_garage,Garage>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_garage,Garage>>
+|**201**|Create garage response|<<_garage,Garage>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Garage
+
+
+[[_getgarage]]
+=== Get all garages.
+....
+GET /garages
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**Search by name** +
+__optional__|Search by name.|string
+|**Query**|**address** +
+__optional__|Search by address.|string
+|**Query**|**partner** +
+__optional__|Search by partner.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Garage response|<<_inlineresponse200,InlineResponse200>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Garage
+
+
+[[_getgaragebyid]]
+=== Get a Garage
+....
+GET /garages/{id}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|Unique garage identifier.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Garage response|<<_inlineresponse2001,InlineResponse2001>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Garage
+
+
+[[_updategaragebyid]]
+=== Update a garage.
+....
+PUT /garages/{id}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|Unique garage identifier.|integer (int32)
+|**Body**|**body** +
+__required__|Garage data to be updated|<<_garage,Garage>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Update garage response|<<_garage,Garage>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Garage
+
+
+[[_deletegaragebyid]]
+=== Delete a garage.
+....
+DELETE /garages/{id}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|Unique garage identifier.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Delete garage response|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Garage
+
+
+[[_login]]
+=== Log user
+....
+POST /login
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**body** +
+__required__|User to connect.|<<_user,User>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Login response|No Content
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Login
+
+
+[[_createuser]]
+=== Create a new User.
+....
+POST /users
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**body** +
+__required__|User to be created.|<<_user,User>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Unexpected error|<<_error,Error>>
+|**201**|Create garage response|<<_user,User>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* User
+
+
+[[_getuser]]
+=== Get all users.
+....
+GET /users
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**email** +
+__optional__|Search by email.|string
+|**Query**|**name** +
+__optional__|Search by name.|string
+|**Query**|**status** +
+__optional__|Search by status.|string
+|**Query**|**username** +
+__optional__|Search by username.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|User response|<<_inlineresponse2002,InlineResponse2002>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* User
+
+
+[[_getuserbyid]]
+=== Get a User
+....
+GET /users/{id}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|Unique user identifier.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|User response|<<_inlineresponse2003,InlineResponse2003>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* User
+
+
+[[_updateuserbyid]]
+=== Update a user.
+....
+PUT /users/{id}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|Unique user identifier.|integer (int32)
+|**Body**|**body** +
+__required__|User data to be updated|<<_user,User>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Update user response|<<_user,User>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* User
+
+
+[[_deleteuserbyid]]
+=== Delete a user.
+....
+DELETE /users/{id}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|Unique user identifier.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Delete user response|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* User
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_address]]
+=== Address
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**address** +
+__optional__|string
+|**city** +
+__optional__|string
+|**country** +
+__optional__|string
+|**id** +
+__optional__|integer (int32)
+|===
+
+
+[[_comment]]
+=== Comment
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**client_id** +
+__optional__|integer (int32)
+|**comment** +
+__optional__|string
+|**id** +
+__optional__|integer (int32)
+|**note** +
+__optional__|integer (int32)
+|===
+
+
+[[_error]]
+=== Error
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**code** +
+__optional__|integer (int32)
+|**fields** +
+__optional__|string
+|**message** +
+__optional__|string
+|===
+
+
+[[_garage]]
+=== Garage
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**address** +
+__optional__|<<_address,Address>>
+|**comments** +
+__optional__|< <<_comment,Comment>> > array
+|**coordinates** +
+__optional__|< string > array
+|**description** +
+__optional__|string
+|**id** +
+__optional__|integer (int32)
+|**id_partner** +
+__optional__|integer (int32)
+|**name** +
+__optional__|string
+|**partner** +
+__optional__|string
+|**phone** +
+__optional__|string
+|===
+
+
+[[_inlineresponse200]]
+=== InlineResponse200
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**data** +
+__optional__|< <<_garage,Garage>> > array
+|===
+
+
+[[_inlineresponse2001]]
+=== InlineResponse2001
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**data** +
+__optional__|<<_garage,Garage>>
+|===
+
+
+[[_inlineresponse2002]]
+=== InlineResponse2002
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**data** +
+__optional__|< <<_user,User>> > array
+|===
+
+
+[[_inlineresponse2003]]
+=== InlineResponse2003
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**data** +
+__optional__|<<_user,User>>
+|===
+
+
+[[_user]]
+=== User
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**email** +
+__optional__|string
+|**first_name** +
+__optional__|string
+|**id** +
+__optional__|integer (int32)
+|**name** +
+__optional__|string
+|**password** +
+__optional__|string
+|**phone** +
+__optional__|string
+|**status** +
+__optional__|enum (client, partner)
+|**username** +
+__optional__|string
+|===
+
+
+
+
+

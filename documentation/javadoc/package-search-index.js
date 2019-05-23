@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"io.swagger"},{"l":"io.swagger.api"},{"l":"io.swagger.configuration"},{"l":"io.swagger.Exception"},{"l":"io.swagger.geocode"},{"l":"io.swagger.mapper"},{"l":"io.swagger.model"},{"l":"io.swagger.repository"},{"l":"io.swagger.repository.specification"},{"l":"io.swagger.security"}]

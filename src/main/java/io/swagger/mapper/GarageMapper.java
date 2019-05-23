@@ -2,10 +2,7 @@ package io.swagger.mapper;
 
 import io.swagger.Exception.ApiException;
 import io.swagger.geocode.AddressConverter;
-import io.swagger.model.Garage;
-import io.swagger.model.InlineResponse200;
-import io.swagger.model.InlineResponse2001;
-import io.swagger.model.User;
+import io.swagger.model.*;
 import io.swagger.repository.GarageDao;
 import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.GarageSpecification;
@@ -32,6 +29,11 @@ public class GarageMapper {
             try {
                 body.setId(null);
                 body.getAddress().setId(null);
+                if (body.getComments() != null && !(body.getComments().isEmpty())) {
+                    for (Comment comment : body.getComments()) {
+                        comment.setId(null);
+                    }
+                }
                 garageDao.save(addressConverter.convertGarageAddress(body));
                 return body;
             } catch (Exception e) {
@@ -47,7 +49,7 @@ public class GarageMapper {
         } else throw new ApiException(404, "Garage not found");
     }
 
-    public InlineResponse200 getGarage(@Valid String searchByName, @Valid String searchByPartner, @Valid String searchByAdress, @Valid String searchByCoordinates) {
+    public InlineResponse200 getGarage(@Valid String searchByName, @Valid String searchByPartner, @Valid String searchByAdress) {
         GarageSpecification spec1 = null;
         GarageSpecification spec2 = null;
         GarageSpecification spec3 = null;
@@ -62,9 +64,6 @@ public class GarageMapper {
             InlineResponse200 inlineResponse200 = new InlineResponse200();
             inlineResponse200.setData(addressConverter.findNearby(searchByAdress));
             return inlineResponse200;
-        }
-        if (searchByCoordinates != null) {
-            spec4 = new GarageSpecification(new SearchCriteria("", ":", searchByCoordinates));
         }
         InlineResponse200 inlineResponse200 = new InlineResponse200();
         inlineResponse200.setData(garageDao.findAll(org.springframework.data.jpa.domain.Specification.where(spec1).and(spec2).and(spec3).and(spec4)));
@@ -83,6 +82,14 @@ public class GarageMapper {
     public Garage updateGarageById(Integer id, @Valid Garage body) throws Exception {
         if (id.equals((body.getId())) && garageDao.existsById(id)) {
             Optional<Garage> garage = garageDao.findById(id);
+            if (garage.isPresent() && !(garage.get().getAddress().equals(body.getAddress()))) {
+                body = addressConverter.convertGarageAddress(body);
+            }
+            for (Comment comment : body.getComments()) {
+                if (!(garage.get().getComments().contains(comment))) {
+                    comment.setId(null);
+                }
+            }
             garageDao.save(body);
             garage = garageDao.findById(id);
             if (garage.isPresent()) {

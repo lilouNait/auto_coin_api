@@ -1,7 +1,7 @@
 Feature: User feature
 
 Background:
-* def data = read('../../data_user.json')
+* def data = read('./data_user.json')
 * configure headers = { Accept: 'application/json' }
 
 Scenario: Import several data at once

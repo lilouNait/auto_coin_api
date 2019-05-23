@@ -54,10 +54,10 @@ public class GaragesApiController implements GaragesApi {
         }else return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<InlineResponse200> getGarage(@ApiParam(value = "Search by name.") @Valid @RequestParam(value = "Search by name", required = false) String searchByName, @ApiParam(value = "Search by partner.") @Valid @RequestParam(value = "partner", required = false) String partner, @ApiParam(value = "Search by address.") @Valid @RequestParam(value = "address", required = false) String address, @ApiParam(value = "Search by coordinates.") @Valid @RequestParam(value = "coordinates", required = false) String coordinates) {
+    public ResponseEntity<InlineResponse200> getGarage(@ApiParam(value = "Search by name.") @Valid @RequestParam(value = "Search by name", required = false) String searchByName, @ApiParam(value = "Search by partner.") @Valid @RequestParam(value = "partner", required = false) String partner, @ApiParam(value = "Search by address.") @Valid @RequestParam(value = "address", required = false) String address) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<InlineResponse200>(garageMapper.getGarage(searchByName,partner,address,coordinates),HttpStatus.OK);
+            return new ResponseEntity<InlineResponse200>(garageMapper.getGarage(searchByName, partner, address), HttpStatus.OK);
         } else{
             return new ResponseEntity<InlineResponse200>(HttpStatus.BAD_REQUEST);
         }

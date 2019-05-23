@@ -1,7 +1,7 @@
 Feature: Garage feature
 
 Background:
-* def data = read('../../data_garage.json')
+* def data = read('./data_garage.json')
 * configure headers = { Accept: 'application/json' }
 
 Scenario: Import several data at once

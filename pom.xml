@@ -194,7 +194,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
-                    <mainClass>io.swagger.Swagger2SpringBoot</mainClass>
+                    <mainClass>io.swagger.GarageCornerApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,4 +1,4 @@
-import io.swagger.Swagger2SpringBoot;
+import io.swagger.GarageCornerApplication;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.File;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Swagger2SpringBoot.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = GarageCornerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class GenerateSwaggerTest {
 

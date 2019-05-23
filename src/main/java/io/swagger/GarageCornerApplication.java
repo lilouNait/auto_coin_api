@@ -11,10 +11,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableSwagger2
 @ComponentScan(basePackages = {"io.swagger", "io.swagger.api"})
-public class Swagger2SpringBoot implements CommandLineRunner {
+public class GarageCornerApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
-        new SpringApplication(Swagger2SpringBoot.class).run(args);
+        new SpringApplication(GarageCornerApplication.class).run(args);
     }
 
     @Override

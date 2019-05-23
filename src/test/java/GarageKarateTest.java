@@ -1,6 +1,6 @@
 import com.intuit.karate.junit4.Karate;
 import cucumber.api.CucumberOptions;
-import io.swagger.Swagger2SpringBoot;
+import io.swagger.GarageCornerApplication;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +17,7 @@ public class GarageKarateTest {
     @BeforeClass
     public static void setUp() {
         String[] args = new String[0];
-        SpringApplication app = new SpringApplication(Swagger2SpringBoot.class);
+        SpringApplication app = new SpringApplication(GarageCornerApplication.class);
         app.setDefaultProperties(Collections
                 .singletonMap("server.port", "8083"));
         app.run(args);

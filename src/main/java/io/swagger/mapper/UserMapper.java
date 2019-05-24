@@ -96,8 +96,10 @@ public class UserMapper {
                     body.setPassword(MD5Hashing.hash(body.getPassword()));
                 }
             }
-            List<User> luser = userDao.findAll(Specification.where(new UserSpecification(new SearchCriteria("username", ":", body.getUsername()))));
-            if (!luser.isEmpty()) throw new ApiException(400, "Username already exists");
+            if (!body.getUsername().equals(user.get().getUsername())) {
+                List<User> luser = userDao.findAll(Specification.where(new UserSpecification(new SearchCriteria("username", ":", body.getUsername()))));
+                if (!luser.isEmpty()) throw new ApiException(400, "Username already exists");
+            }
             userDao.save(body);
             user = userDao.findById(id);
             if (user.isPresent()) {

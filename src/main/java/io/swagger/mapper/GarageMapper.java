@@ -52,7 +52,6 @@ public class GarageMapper {
 
     public InlineResponse200 getGarage(@Valid String searchByName, @Valid Integer searchByPartner, @Valid String searchByAdress) {
         GarageSpecification spec1 = null;
-        System.out.print("Nmemee" + searchByName);
         GarageSpecification spec2 = null;
         if (searchByName != null) {
             spec1 = new GarageSpecification(new SearchCriteria("name", ":", searchByName));

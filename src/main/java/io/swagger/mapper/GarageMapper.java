@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class GarageMapper {
@@ -35,7 +37,6 @@ public class GarageMapper {
                         comment.setId(null);
                     }
                 }
-                body.setName(body.getName().toUpperCase());
                 garageDao.save(addressConverter.convertGarageAddress(body));
                 return body;
             } catch (Exception e) {
@@ -52,22 +53,27 @@ public class GarageMapper {
     }
 
     public InlineResponse200 getGarage(@Valid String searchByName, @Valid Integer searchByPartner, @Valid String searchByAdress) {
-        GarageSpecification spec1 = null;
         GarageSpecification spec2 = null;
+        InlineResponse200 inlineResponse200 = new InlineResponse200();
+        List<Garage> newList = new ArrayList<>();
         if (searchByName != null) {
-            searchByName = searchByName.toUpperCase();
-            spec1 = new GarageSpecification(new SearchCriteria("name", ":", searchByName));
+            List<Garage> list = garageDao.findAll();
+            for (Garage garage : list) {
+                if (garage.getName().toUpperCase().contains(searchByName.toUpperCase())) {
+                    newList.add(garage);
+                }
+            }
+            inlineResponse200.setData(newList);
+            return inlineResponse200;
         }
         if (searchByPartner != null) {
             spec2 = new GarageSpecification(new SearchCriteria("idPartner", ":", searchByPartner));
         }
         if (searchByAdress != null) {
-            InlineResponse200 inlineResponse200 = new InlineResponse200();
             inlineResponse200.setData(addressConverter.findNearby(searchByAdress));
             return inlineResponse200;
         }
-        InlineResponse200 inlineResponse200 = new InlineResponse200();
-        inlineResponse200.setData(garageDao.findAll(Specification.where(spec1).and(spec2)));
+        inlineResponse200.setData(garageDao.findAll(Specification.where(spec2)));
         return inlineResponse200;
     }
 

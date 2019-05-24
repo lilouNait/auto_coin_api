@@ -92,12 +92,12 @@ GET /garages
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Query**|**Search by name** +
-__optional__|Search by name.|string
 |**Query**|**address** +
 __optional__|Search by address.|string
+|**Query**|**name** +
+__optional__|Search by name.|string
 |**Query**|**partner** +
-__optional__|Search by partner.|string
+__optional__|Search by partner.|integer (int32)
 |===
 
 

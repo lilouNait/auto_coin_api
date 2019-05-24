@@ -38,17 +38,17 @@
         ],
         "parameters": [
           {
-            "name": "Search by name",
+            "name": "address",
             "in": "query",
-            "description": "Search by name.",
+            "description": "Search by address.",
             "required": false,
             "type": "string",
             "allowEmptyValue": false
           },
           {
-            "name": "address",
+            "name": "name",
             "in": "query",
-            "description": "Search by address.",
+            "description": "Search by name.",
             "required": false,
             "type": "string",
             "allowEmptyValue": false
@@ -58,7 +58,8 @@
             "in": "query",
             "description": "Search by partner.",
             "required": false,
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "allowEmptyValue": false
           }
         ],

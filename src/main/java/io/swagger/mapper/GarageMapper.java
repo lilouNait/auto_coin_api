@@ -55,7 +55,7 @@ public class GarageMapper {
             spec1 = new GarageSpecification(new SearchCriteria("name", ":", searchByName));
         }
         if (searchByPartner != null) {
-            spec2 = new GarageSpecification(new SearchCriteria("partner", ":", searchByPartner));
+            spec2 = new GarageSpecification(new SearchCriteria("id_partner", ":", searchByPartner));
         }
         if (searchByAdress != null) {
            InlineResponse200 inlineResponse200= new InlineResponse200();

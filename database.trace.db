@@ -1,0 +1,20 @@
+2019-05-23 22:55:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne """DESCRIPTION"" VARCHAR(255)": "'Nam tempor porta ex eget varius. Vivamus rhoncus nunc justo, sit amet suscipit nulla tempus et. Donec imperdiet bibendum felis,... (621)"
+Value too long for column """DESCRIPTION"" VARCHAR(255)": "'Nam tempor porta ex eget varius. Vivamus rhoncus nunc justo, sit amet suscipit nulla tempus et. Donec imperdiet bibendum felis,... (621)"; SQL statement:
+insert into garage (address_id, description, id_partner, name, partner, phone, id) values (?, ?, ?, ?, ?, ?, ?) [22001-199]
+2019-05-24 14:36:23 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne """DESCRIPTION"" VARCHAR(255)": "STRINGDECODE('R\u00e9paration toutes marques Climatisation sans rendez vous (2h immobilisation) Pr\u00eat...\r\n+ Gestion moteur... (271)"
+Value too long for column """DESCRIPTION"" VARCHAR(255)": "STRINGDECODE('R\u00e9paration toutes marques Climatisation sans rendez vous (2h immobilisation) Pr\u00eat...\r\n+ Gestion moteur... (271)"; SQL statement:
+insert into garage (address_id, description, id_partner, name, partner, phone, id) values (?, ?, ?, ?, ?, ?, ?) [22001-199]
+2019-05-24 14:36:38 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne """DESCRIPTION"" VARCHAR(255)": "STRINGDECODE('R\u00e9paration toutes marques Climatisation sans rendez vous (2h immobilisation) Pr\u00eat...\r\n+ Gestion moteur... (271)"
+Value too long for column """DESCRIPTION"" VARCHAR(255)": "STRINGDECODE('R\u00e9paration toutes marques Climatisation sans rendez vous (2h immobilisation) Pr\u00eat...\r\n+ Gestion moteur... (271)"; SQL statement:
+insert into garage (address_id, description, id_partner, name, partner, phone, id) values (?, ?, ?, ?, ?, ?, ?) [22001-199]
+2019-05-24 14:37:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne """DESCRIPTION"" VARCHAR(255)": "STRINGDECODE('R\u00e9paration toutes marques Climatisation sans rendez vous (2h immobilisation) Pr\u00eat...\r\n+ Gestion moteur... (271)"
+Value too long for column """DESCRIPTION"" VARCHAR(255)": "STRINGDECODE('R\u00e9paration toutes marques Climatisation sans rendez vous (2h immobilisation) Pr\u00eat...\r\n+ Gestion moteur... (271)"; SQL statement:
+insert into garage (address_id, description, id_partner, name, partner, phone, id) values (?, ?, ?, ?, ?, ?, ?) [22001-199]
+2019-05-24 14:37:03 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne """DESCRIPTION"" VARCHAR(255)": "STRINGDECODE('R\u00e9paration toutes marques Climatisation sans rendez vous (2h immobilisation) Pr\u00eat...\r\n+ Gestion moteur... (271)"
+Value too long for column """DESCRIPTION"" VARCHAR(255)": "STRINGDECODE('R\u00e9paration toutes marques Climatisation sans rendez vous (2h immobilisation) Pr\u00eat...\r\n+ Gestion moteur... (271)"; SQL statement:
+insert into garage (address_id, description, id_partner, name, partner, phone, id) values (?, ?, ?, ?, ?, ?, ?) [22001-199]

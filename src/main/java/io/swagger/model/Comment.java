@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -25,6 +22,7 @@ public class Comment {
     @JsonProperty("client_id")
     private Integer clientId = null;
 
+    @Column(length = 500)
     @JsonProperty("comment")
     private String comment = null;
 

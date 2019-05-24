@@ -1,0 +1,10 @@
+io.swagger
+io.swagger.api
+io.swagger.configuration
+io.swagger.Exception
+io.swagger.geocode
+io.swagger.mapper
+io.swagger.model
+io.swagger.repository
+io.swagger.repository.specification
+io.swagger.security

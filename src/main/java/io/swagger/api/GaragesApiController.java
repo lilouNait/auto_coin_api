@@ -7,24 +7,18 @@ import io.swagger.mapper.GarageMapper;
 import io.swagger.model.Garage;
 import io.swagger.model.InlineResponse200;
 import io.swagger.model.InlineResponse2001;
-import io.swagger.repository.GarageDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
-import java.util.List;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-05-09T18:50:43.350+02:00")
 
@@ -60,10 +54,10 @@ public class GaragesApiController implements GaragesApi {
         }else return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<InlineResponse200> getGarage(@ApiParam(value = "Search by name.") @Valid @RequestParam(value = "Search by name", required = false) String searchByName, @ApiParam(value = "Search by partner.") @Valid @RequestParam(value = "partner", required = false) String partner, @ApiParam(value = "Search by address.") @Valid @RequestParam(value = "address", required = false) String address, @ApiParam(value = "Search by coordinates.") @Valid @RequestParam(value = "coordinates", required = false) String coordinates) {
+    public ResponseEntity<InlineResponse200> getGarage(@ApiParam(value = "Search by name.") @Valid @RequestParam(value = "Search by name", required = false) String searchByName, @ApiParam(value = "Search by partner.") @Valid @RequestParam(value = "partner", required = false) String partner, @ApiParam(value = "Search by address.") @Valid @RequestParam(value = "address", required = false) String address) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<InlineResponse200>(garageMapper.getGarage(searchByName,partner,address,coordinates),HttpStatus.OK);
+            return new ResponseEntity<InlineResponse200>(garageMapper.getGarage(searchByName, partner, address), HttpStatus.OK);
         } else{
             return new ResponseEntity<InlineResponse200>(HttpStatus.BAD_REQUEST);
         }

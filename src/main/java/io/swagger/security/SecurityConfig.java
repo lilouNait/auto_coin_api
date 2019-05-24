@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic();
-                http.headers().frameOptions().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Autowired

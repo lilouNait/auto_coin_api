@@ -53,11 +53,11 @@ public class GarageMapper {
     }
 
     public InlineResponse200 getGarage(@Valid String searchByName, @Valid Integer searchByPartner, @Valid String searchByAdress) {
-        GarageSpecification spec2 = null;
+        GarageSpecification spec2;
         InlineResponse200 inlineResponse200 = new InlineResponse200();
+        List<Garage> list = garageDao.findAll();
         List<Garage> newList = new ArrayList<>();
         if (searchByName != null) {
-            List<Garage> list = garageDao.findAll();
             for (Garage garage : list) {
                 if (garage.getName().toUpperCase().contains(searchByName.toUpperCase())) {
                     newList.add(garage);
@@ -68,12 +68,14 @@ public class GarageMapper {
         }
         if (searchByPartner != null) {
             spec2 = new GarageSpecification(new SearchCriteria("idPartner", ":", searchByPartner));
+            inlineResponse200.setData(garageDao.findAll(Specification.where(spec2)));
+            return inlineResponse200;
         }
         if (searchByAdress != null) {
             inlineResponse200.setData(addressConverter.findNearby(searchByAdress));
             return inlineResponse200;
         }
-        inlineResponse200.setData(garageDao.findAll(Specification.where(spec2)));
+        inlineResponse200.setData(list);
         return inlineResponse200;
     }
 

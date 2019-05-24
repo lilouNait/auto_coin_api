@@ -8,6 +8,7 @@ import io.swagger.repository.UserDao;
 import io.swagger.repository.specification.GarageSpecification;
 import io.swagger.repository.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -51,9 +52,8 @@ public class GarageMapper {
 
     public InlineResponse200 getGarage(@Valid String searchByName, @Valid String searchByPartner, @Valid String searchByAdress) {
         GarageSpecification spec1 = null;
+        System.out.print("Nmemee" + searchByName);
         GarageSpecification spec2 = null;
-        GarageSpecification spec3 = null;
-        GarageSpecification spec4 = null;
         if (searchByName != null) {
             spec1 = new GarageSpecification(new SearchCriteria("name", ":", searchByName));
         }
@@ -66,7 +66,7 @@ public class GarageMapper {
             return inlineResponse200;
         }
         InlineResponse200 inlineResponse200 = new InlineResponse200();
-        inlineResponse200.setData(garageDao.findAll(org.springframework.data.jpa.domain.Specification.where(spec1).and(spec2).and(spec3).and(spec4)));
+        inlineResponse200.setData(garageDao.findAll(Specification.where(spec1)));
         return inlineResponse200;
     }
 

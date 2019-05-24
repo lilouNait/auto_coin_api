@@ -35,6 +35,7 @@ public class GarageMapper {
                         comment.setId(null);
                     }
                 }
+                body.setName(body.getName().toUpperCase());
                 garageDao.save(addressConverter.convertGarageAddress(body));
                 return body;
             } catch (Exception e) {
@@ -54,6 +55,7 @@ public class GarageMapper {
         GarageSpecification spec1 = null;
         GarageSpecification spec2 = null;
         if (searchByName != null) {
+            searchByName = searchByName.toUpperCase();
             spec1 = new GarageSpecification(new SearchCriteria("name", ":", searchByName));
         }
         if (searchByPartner != null) {

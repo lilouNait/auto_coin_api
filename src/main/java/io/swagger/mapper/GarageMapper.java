@@ -50,7 +50,7 @@ public class GarageMapper {
         } else throw new ApiException(404, "Garage not found");
     }
 
-    public InlineResponse200 getGarage(@Valid String searchByName, @Valid String searchByPartner, @Valid String searchByAdress) {
+    public InlineResponse200 getGarage(@Valid String searchByName, @Valid Integer searchByPartner, @Valid String searchByAdress) {
         GarageSpecification spec1 = null;
         System.out.print("Nmemee" + searchByName);
         GarageSpecification spec2 = null;
@@ -58,7 +58,7 @@ public class GarageMapper {
             spec1 = new GarageSpecification(new SearchCriteria("name", ":", searchByName));
         }
         if (searchByPartner != null) {
-            spec2 = new GarageSpecification(new SearchCriteria("id_partner", ":", searchByPartner));
+            spec2 = new GarageSpecification(new SearchCriteria("idPartner", ":", searchByPartner));
         }
         if (searchByAdress != null) {
             InlineResponse200 inlineResponse200 = new InlineResponse200();
@@ -66,7 +66,7 @@ public class GarageMapper {
             return inlineResponse200;
         }
         InlineResponse200 inlineResponse200 = new InlineResponse200();
-        inlineResponse200.setData(garageDao.findAll(Specification.where(spec1)));
+        inlineResponse200.setData(garageDao.findAll(Specification.where(spec1).and(spec2)));
         return inlineResponse200;
     }
 

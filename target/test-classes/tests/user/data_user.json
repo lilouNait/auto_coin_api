@@ -1,0 +1,112 @@
+[
+  {
+    "id": 4,
+    "username": "rico",
+    "name": "popo",
+    "first_name": "rako",
+    "phone": "0783551755",
+    "email": "ezekrako@gmail.com",
+    "password": "chien",
+    "status": "partner"
+  },
+
+  {
+    "id": 5,
+    "username": "toto",
+    "name": "isabelle",
+    "first_name": "cowgirl",
+    "phone": "0646322364",
+    "email": "sisi@gmail.com",
+    "password": "chat",
+    "status": "client"
+  },
+
+  {
+    "id": 6,
+    "username": "iphone",
+    "name": "jobs",
+    "first_name": "steve",
+    "phone": "0646342165",
+    "email": "joby@hotmail.com",
+    "password": "unknown",
+    "status": "partner"
+  },
+
+  {
+    "id": 7,
+    "username": "yphone",
+    "name": "jobs",
+    "first_name": "steve",
+    "phone": "0646342165",
+    "email": "joby@hotmail.com",
+    "password": "unknown",
+    "status": "partner"
+  },
+
+  {
+    "id": 8,
+    "username": "simsung",
+    "name": "duck",
+    "first_name": "sheep",
+    "phone": "0654627490",
+    "email": "sung@gmail.com",
+    "password": "shitty",
+    "status": "partenaire"
+  },
+
+  {
+    "id": 9,
+    "username": "amajohn",
+    "name": "amarald",
+    "first_name": "john",
+    "phone": "0556342175",
+    "email": "johnny@hotmail.com",
+    "password": "electronics",
+    "status": "client"
+  },
+
+  {
+    "id": 10,
+    "username": "chucky",
+    "name": "chris",
+    "first_name": "kentuck",
+    "phone": "06263621",
+    "email": "dookey@gmail.com",
+    "password": "amggy",
+    "status": "client"
+  },
+
+  {
+    "id": 11,
+    "username": "mtf",
+    "name": "rashid",
+    "first_name": "badouri",
+    "phone": "0557342165",
+    "email": "rashbad@hotmail.com",
+    "password": "humoriste",
+    "status": "client"
+  },
+
+  {
+  "id": 1,
+  "username": "ert",
+  "name": "rashid",
+  "first_name": "badouri",
+  "phone": "0557342165",
+  "email": "rashbad@hotmail.com",
+  "password": "humoriste",
+  "status": "client"
+  },
+
+  {
+    "id": 1,
+    "username": "iphone",
+    "name": "rashid",
+    "first_name": "badouri",
+    "phone": "0557342165",
+    "email": "rashbad@hotmail.com",
+    "password": "humoriste",
+    "status": "client"
+  }
+]
+

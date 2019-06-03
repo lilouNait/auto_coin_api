@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Error.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">garage</a> &gt; <a href="index.source.html" class="el_package">io.swagger.model</a> &gt; <span class="el_source">Error.java</span></div><h1>Error.java</h1><pre class="source lang-java linenums">package io.swagger.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.Objects;
+
+/**
+ * Error
+ */
+@Validated
+@javax.annotation.Generated(value = &quot;io.swagger.codegen.languages.SpringCodegen&quot;, date = &quot;2019-05-09T18:50:43.350+02:00&quot;)
+
+<span class="fc" id="L15">public class Error {</span>
+<span class="fc" id="L16">    @JsonProperty(&quot;code&quot;)</span>
+    private Integer code = null;
+
+<span class="fc" id="L19">    @JsonProperty(&quot;message&quot;)</span>
+    private String message = null;
+
+<span class="fc" id="L22">    @JsonProperty(&quot;fields&quot;)</span>
+    private String fields = null;
+
+    public Error code(Integer code) {
+<span class="nc" id="L26">        this.code = code;</span>
+<span class="nc" id="L27">        return this;</span>
+    }
+
+    /**
+     * Get code
+     *
+     * @return code
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public Integer getCode() {
+<span class="fc" id="L39">        return code;</span>
+    }
+
+    public void setCode(Integer code) {
+<span class="fc" id="L43">        this.code = code;</span>
+<span class="fc" id="L44">    }</span>
+
+    public Error message(String message) {
+<span class="nc" id="L47">        this.message = message;</span>
+<span class="nc" id="L48">        return this;</span>
+    }
+
+    /**
+     * Get message
+     *
+     * @return message
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public String getMessage() {
+<span class="fc" id="L60">        return message;</span>
+    }
+
+    public void setMessage(String message) {
+<span class="fc" id="L64">        this.message = message;</span>
+<span class="fc" id="L65">    }</span>
+
+    public Error fields(String fields) {
+<span class="nc" id="L68">        this.fields = fields;</span>
+<span class="nc" id="L69">        return this;</span>
+    }
+
+    /**
+     * Get fields
+     *
+     * @return fields
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public String getFields() {
+<span class="fc" id="L81">        return fields;</span>
+    }
+
+    public void setFields(String fields) {
+<span class="nc" id="L85">        this.fields = fields;</span>
+<span class="nc" id="L86">    }</span>
+
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L92">            return true;</span>
+        }
+<span class="nc bnc" id="L94" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L95">            return false;</span>
+        }
+<span class="nc" id="L97">        Error error = (Error) o;</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        return Objects.equals(this.code, error.code) &amp;&amp;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">                Objects.equals(this.message, error.message) &amp;&amp;</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">                Objects.equals(this.fields, error.fields);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L105">        return Objects.hash(code, message, fields);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L110">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L111">        sb.append(&quot;class Error {\n&quot;);</span>
+
+<span class="nc" id="L113">        sb.append(&quot;    code: &quot;).append(toIndentedString(code)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L114">        sb.append(&quot;    message: &quot;).append(toIndentedString(message)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L115">        sb.append(&quot;    fields: &quot;).append(toIndentedString(fields)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L116">        sb.append(&quot;}&quot;);</span>
+<span class="nc" id="L117">        return sb.toString();</span>
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (o == null) {</span>
+<span class="nc" id="L126">            return &quot;null&quot;;</span>
+        }
+<span class="nc" id="L128">        return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

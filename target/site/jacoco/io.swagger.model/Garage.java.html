@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Garage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">garage</a> &gt; <a href="index.source.html" class="el_package">io.swagger.model</a> &gt; <span class="el_source">Garage.java</span></div><h1>Garage.java</h1><pre class="source lang-java linenums">package io.swagger.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * Garage
+ */
+@Validated
+@javax.annotation.Generated(value = &quot;io.swagger.codegen.languages.SpringCodegen&quot;, date = &quot;2019-05-09T18:50:43.350+02:00&quot;)
+@Entity
+<span class="fc" id="L20">public class Garage {</span>
+
+<span class="fc" id="L22">    @Id</span>
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty(&quot;id&quot;)
+    private Integer id = null;
+
+<span class="fc" id="L27">    @JsonProperty(&quot;id_partner&quot;)</span>
+    @Column(nullable = false, updatable = false)
+    private Integer idPartner = null;
+
+<span class="fc" id="L31">    @JsonProperty(&quot;partner&quot;)</span>
+    private String partner = null;
+
+<span class="fc" id="L34">    @JsonProperty(&quot;name&quot;)</span>
+    @Column(nullable = false)
+    private String name = null;
+
+<span class="fc" id="L38">    @JsonProperty(&quot;phone&quot;)</span>
+    private String phone = null;
+
+<span class="fc" id="L41">    @Column(length = 500)</span>
+    @JsonProperty(&quot;description&quot;)
+    private String description = null;
+
+<span class="fc" id="L45">    @OneToOne(cascade = CascadeType.ALL)</span>
+    @JsonProperty(&quot;address&quot;)
+    //@Column(nullable = false)
+    private Address address = null;
+
+<span class="fc" id="L50">    @ElementCollection</span>
+    @JsonProperty(&quot;coordinates&quot;)
+    @Valid
+    @Column(nullable = false)
+    private List&lt;String&gt; coordinates = null;
+
+<span class="fc" id="L56">    @OneToMany(cascade = CascadeType.ALL)</span>
+    @JsonProperty(&quot;comments&quot;)
+    @Valid
+    private List&lt;Comment&gt; comments = null;
+
+    public Garage id(Integer id) {
+<span class="nc" id="L62">        this.id = id;</span>
+<span class="nc" id="L63">        return this;</span>
+    }
+
+    /**
+     * Get id
+     *
+     * @return id
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+    public Integer getId() {
+<span class="fc" id="L74">        return id;</span>
+    }
+
+    public void setId(Integer id) {
+<span class="fc" id="L78">        this.id = id;</span>
+<span class="fc" id="L79">    }</span>
+
+    public Garage idPartner(Integer idPartner) {
+<span class="nc" id="L82">        this.idPartner = idPartner;</span>
+<span class="nc" id="L83">        return this;</span>
+    }
+
+    /**
+     * Get idPartner
+     *
+     * @return idPartner
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public Integer getIdPartner() {
+<span class="fc" id="L95">        return idPartner;</span>
+    }
+
+    public void setIdPartner(Integer idPartner) {
+<span class="fc" id="L99">        this.idPartner = idPartner;</span>
+<span class="fc" id="L100">    }</span>
+
+    public Garage partner(String partner) {
+<span class="nc" id="L103">        this.partner = partner;</span>
+<span class="nc" id="L104">        return this;</span>
+    }
+
+    /**
+     * Get partner
+     *
+     * @return partner
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public String getPartner() {
+<span class="fc" id="L116">        return partner;</span>
+    }
+
+    public void setPartner(String partner) {
+<span class="fc" id="L120">        this.partner = partner;</span>
+<span class="fc" id="L121">    }</span>
+
+    public Garage name(String name) {
+<span class="nc" id="L124">        this.name = name;</span>
+<span class="nc" id="L125">        return this;</span>
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public String getName() {
+<span class="fc" id="L137">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L141">        this.name = name;</span>
+<span class="fc" id="L142">    }</span>
+
+    public Garage phone(String phone) {
+<span class="nc" id="L145">        this.phone = phone;</span>
+<span class="nc" id="L146">        return this;</span>
+    }
+
+    /**
+     * Get phone
+     *
+     * @return phone
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public String getPhone() {
+<span class="fc" id="L158">        return phone;</span>
+    }
+
+    public void setPhone(String phone) {
+<span class="fc" id="L162">        this.phone = phone;</span>
+<span class="fc" id="L163">    }</span>
+
+    public Garage description(String description) {
+<span class="nc" id="L166">        this.description = description;</span>
+<span class="nc" id="L167">        return this;</span>
+    }
+
+    /**
+     * Get description
+     *
+     * @return description
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public String getDescription() {
+<span class="fc" id="L179">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="fc" id="L183">        this.description = description;</span>
+<span class="fc" id="L184">    }</span>
+
+    public Garage address(Address address) {
+<span class="nc" id="L187">        this.address = address;</span>
+<span class="nc" id="L188">        return this;</span>
+    }
+
+    /**
+     * Get address
+     *
+     * @return address
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+    @Valid
+
+    public Address getAddress() {
+<span class="fc" id="L201">        return address;</span>
+    }
+
+    public void setAddress(Address address) {
+<span class="fc" id="L205">        this.address = address;</span>
+<span class="fc" id="L206">    }</span>
+
+    public Garage coordinates(List&lt;String&gt; coordinates) {
+<span class="nc" id="L209">        this.coordinates = coordinates;</span>
+<span class="nc" id="L210">        return this;</span>
+    }
+
+    public Garage addCoordinatesItem(String coordinatesItem) {
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        if (this.coordinates == null) {</span>
+<span class="nc" id="L215">            this.coordinates = new ArrayList&lt;String&gt;();</span>
+        }
+<span class="nc" id="L217">        this.coordinates.add(coordinatesItem);</span>
+<span class="nc" id="L218">        return this;</span>
+    }
+
+    /**
+     * Get coordinates
+     *
+     * @return coordinates
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+    @Size(min = 2, max = 2)
+    public List&lt;String&gt; getCoordinates() {
+<span class="fc" id="L230">        return coordinates;</span>
+    }
+
+    public void setCoordinates(List&lt;String&gt; coordinates) {
+<span class="fc" id="L234">        this.coordinates = coordinates;</span>
+<span class="fc" id="L235">    }</span>
+
+    public Garage comments(List&lt;Comment&gt; comments) {
+<span class="nc" id="L238">        this.comments = comments;</span>
+<span class="nc" id="L239">        return this;</span>
+    }
+
+    public Garage addCommentsItem(Comment commentsItem) {
+<span class="nc bnc" id="L243" title="All 2 branches missed.">        if (this.comments == null) {</span>
+<span class="nc" id="L244">            this.comments = new ArrayList&lt;Comment&gt;();</span>
+        }
+<span class="nc" id="L246">        this.comments.add(commentsItem);</span>
+<span class="nc" id="L247">        return this;</span>
+    }
+
+    /**
+     * Get comments
+     *
+     * @return comments
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+    @Valid
+
+    public List&lt;Comment&gt; getComments() {
+<span class="fc" id="L260">        return comments;</span>
+    }
+
+    public void setComments(List&lt;Comment&gt; comments) {
+<span class="fc" id="L264">        this.comments = comments;</span>
+<span class="fc" id="L265">    }</span>
+
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L270" title="All 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L271">            return true;</span>
+        }
+<span class="nc bnc" id="L273" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L274">            return false;</span>
+        }
+<span class="nc" id="L276">        Garage garage = (Garage) o;</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">        return Objects.equals(this.id, garage.id) &amp;&amp;</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">                Objects.equals(this.idPartner, garage.idPartner) &amp;&amp;</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">                Objects.equals(this.partner, garage.partner) &amp;&amp;</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">                Objects.equals(this.name, garage.name) &amp;&amp;</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">                Objects.equals(this.phone, garage.phone) &amp;&amp;</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">                Objects.equals(this.description, garage.description) &amp;&amp;</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">                Objects.equals(this.address, garage.address) &amp;&amp;</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">                Objects.equals(this.coordinates, garage.coordinates) &amp;&amp;</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">                Objects.equals(this.comments, garage.comments);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L290">        return Objects.hash(id, idPartner, partner, name, phone, description, address, coordinates, comments);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L295">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L296">        sb.append(&quot;class Garage {\n&quot;);</span>
+
+<span class="nc" id="L298">        sb.append(&quot;    id: &quot;).append(toIndentedString(id)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L299">        sb.append(&quot;    idPartner: &quot;).append(toIndentedString(idPartner)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L300">        sb.append(&quot;    partner: &quot;).append(toIndentedString(partner)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L301">        sb.append(&quot;    name: &quot;).append(toIndentedString(name)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L302">        sb.append(&quot;    phone: &quot;).append(toIndentedString(phone)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L303">        sb.append(&quot;    description: &quot;).append(toIndentedString(description)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L304">        sb.append(&quot;    address: &quot;).append(toIndentedString(address)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L305">        sb.append(&quot;    coordinates: &quot;).append(toIndentedString(coordinates)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L306">        sb.append(&quot;    comments: &quot;).append(toIndentedString(comments)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L307">        sb.append(&quot;}&quot;);</span>
+<span class="nc" id="L308">        return sb.toString();</span>
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+<span class="nc bnc" id="L316" title="All 2 branches missed.">        if (o == null) {</span>
+<span class="nc" id="L317">            return &quot;null&quot;;</span>
+        }
+<span class="nc" id="L319">        return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

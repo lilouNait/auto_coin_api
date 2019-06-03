@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Comment.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">garage</a> &gt; <a href="index.source.html" class="el_package">io.swagger.model</a> &gt; <span class="el_source">Comment.java</span></div><h1>Comment.java</h1><pre class="source lang-java linenums">package io.swagger.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
+import java.util.Objects;
+
+/**
+ * Comment
+ */
+@Validated
+@javax.annotation.Generated(value = &quot;io.swagger.codegen.languages.SpringCodegen&quot;, date = &quot;2019-05-09T18:50:43.350+02:00&quot;)
+@Entity
+<span class="fc" id="L16">public class Comment {</span>
+<span class="fc" id="L17">    @Id</span>
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty(&quot;id&quot;)
+    private Integer id = null;
+
+<span class="fc" id="L22">    @JsonProperty(&quot;client_id&quot;)</span>
+    private Integer clientId = null;
+
+<span class="fc" id="L25">    @Column(length = 500)</span>
+    @JsonProperty(&quot;comment&quot;)
+    private String comment = null;
+
+<span class="fc" id="L29">    @JsonProperty(&quot;note&quot;)</span>
+    private Integer note = null;
+
+    public Comment id(Integer id) {
+<span class="nc" id="L33">        this.id = id;</span>
+<span class="nc" id="L34">        return this;</span>
+    }
+
+    /**
+     * Get id
+     *
+     * @return id
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public Integer getId() {
+<span class="fc" id="L46">        return id;</span>
+    }
+
+    public void setId(Integer id) {
+<span class="fc" id="L50">        this.id = id;</span>
+<span class="fc" id="L51">    }</span>
+
+    public Comment clientId(Integer clientId) {
+<span class="nc" id="L54">        this.clientId = clientId;</span>
+<span class="nc" id="L55">        return this;</span>
+    }
+
+    /**
+     * Get clientId
+     *
+     * @return clientId
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public Integer getClientId() {
+<span class="fc" id="L67">        return clientId;</span>
+    }
+
+    public void setClientId(Integer clientId) {
+<span class="fc" id="L71">        this.clientId = clientId;</span>
+<span class="fc" id="L72">    }</span>
+
+    public Comment comment(String comment) {
+<span class="nc" id="L75">        this.comment = comment;</span>
+<span class="nc" id="L76">        return this;</span>
+    }
+
+    /**
+     * Get comment
+     *
+     * @return comment
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public String getComment() {
+<span class="fc" id="L88">        return comment;</span>
+    }
+
+    public void setComment(String comment) {
+<span class="fc" id="L92">        this.comment = comment;</span>
+<span class="fc" id="L93">    }</span>
+
+    public Comment note(Integer note) {
+<span class="nc" id="L96">        this.note = note;</span>
+<span class="nc" id="L97">        return this;</span>
+    }
+
+    /**
+     * Get note
+     *
+     * @return note
+     **/
+    @ApiModelProperty(value = &quot;&quot;)
+
+
+    public Integer getNote() {
+<span class="fc" id="L109">        return note;</span>
+    }
+
+    public void setNote(Integer note) {
+<span class="fc" id="L113">        this.note = note;</span>
+<span class="fc" id="L114">    }</span>
+
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L120">            return true;</span>
+        }
+<span class="nc bnc" id="L122" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L123">            return false;</span>
+        }
+<span class="nc" id="L125">        Comment comment = (Comment) o;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        return Objects.equals(this.id, comment.id) &amp;&amp;</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">                Objects.equals(this.clientId, comment.clientId) &amp;&amp;</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                Objects.equals(this.comment, comment.comment) &amp;&amp;</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">                Objects.equals(this.note, comment.note);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L134">        return Objects.hash(id, clientId, comment, note);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L139">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L140">        sb.append(&quot;class Comment {\n&quot;);</span>
+
+<span class="nc" id="L142">        sb.append(&quot;    id: &quot;).append(toIndentedString(id)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L143">        sb.append(&quot;    clientId: &quot;).append(toIndentedString(clientId)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L144">        sb.append(&quot;    comment: &quot;).append(toIndentedString(comment)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L145">        sb.append(&quot;    note: &quot;).append(toIndentedString(note)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L146">        sb.append(&quot;}&quot;);</span>
+<span class="nc" id="L147">        return sb.toString();</span>
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if (o == null) {</span>
+<span class="nc" id="L156">            return &quot;null&quot;;</span>
+        }
+<span class="nc" id="L158">        return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

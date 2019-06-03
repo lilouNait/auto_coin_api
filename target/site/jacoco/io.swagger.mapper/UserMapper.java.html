@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">garage</a> &gt; <a href="index.source.html" class="el_package">io.swagger.mapper</a> &gt; <span class="el_source">UserMapper.java</span></div><h1>UserMapper.java</h1><pre class="source lang-java linenums">package io.swagger.mapper;
+
+import io.swagger.Exception.ApiException;
+import io.swagger.model.Garage;
+import io.swagger.model.InlineResponse2002;
+import io.swagger.model.InlineResponse2003;
+import io.swagger.model.User;
+import io.swagger.repository.GarageDao;
+import io.swagger.repository.UserDao;
+import io.swagger.repository.specification.SearchCriteria;
+import io.swagger.repository.specification.UserSpecification;
+import io.swagger.security.MD5Hashing;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
+
+public class UserMapper {
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private GarageDao garageDao;
+
+<span class="fc" id="L28">    public UserMapper() {</span>
+<span class="fc" id="L29">    }</span>
+
+    public User createUser(@Valid User body) throws Exception {
+        try {
+<span class="fc" id="L33">            if (!userDao.findAll(Specification.where(new UserSpecification(new SearchCriteria(&quot;username&quot;, &quot;:&quot;,</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">                    body.getUsername())))).isEmpty()) {</span>
+<span class="fc" id="L35">                throw new ApiException(400, &quot;Username already exists&quot;);</span>
+            }
+<span class="fc" id="L37">            body.setPassword(MD5Hashing.hash(body.getPassword()));</span>
+<span class="fc" id="L38">            body.setId(null);</span>
+<span class="fc" id="L39">            userDao.save(body);</span>
+<span class="fc" id="L40">            return body;</span>
+<span class="fc" id="L41">        } catch (Exception e) {</span>
+<span class="fc" id="L42">            throw new ApiException(400, e.getMessage());</span>
+        }
+    }
+
+    public void deleteUserById(Integer id) throws ApiException {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (userDao.existsById(id)) {</span>
+<span class="fc" id="L48">            userDao.deleteById(id);</span>
+<span class="fc" id="L49">            List&lt;Garage&gt; list = garageDao.findAll();</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">            for (Garage garage : list) {</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (garage.getIdPartner().equals(id)) {</span>
+<span class="nc" id="L52">                    garageDao.deleteById(garage.getId());</span>
+                }
+<span class="nc" id="L54">            }</span>
+<span class="fc" id="L55">        } else throw new ApiException(404, &quot;User not found&quot;);</span>
+
+<span class="fc" id="L57">    }</span>
+
+    public InlineResponse2002 getUser(@Valid String name, @Valid String username, @Valid String email, @Valid String status) {
+<span class="fc" id="L60">        UserSpecification spec1 = null;</span>
+<span class="fc" id="L61">        UserSpecification spec2 = null;</span>
+<span class="fc" id="L62">        UserSpecification spec3 = null;</span>
+<span class="fc" id="L63">        UserSpecification spec4 = null;</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (name != null) {</span>
+<span class="nc" id="L65">            spec1 = new UserSpecification(new SearchCriteria(&quot;name&quot;, &quot;:&quot;, name));</span>
+        }
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (username != null) {</span>
+<span class="nc" id="L68">            spec2 = new UserSpecification(new SearchCriteria(&quot;username&quot;, &quot;:&quot;, username));</span>
+        }
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        if (email != null) {</span>
+<span class="nc" id="L71">            spec3 = new UserSpecification(new SearchCriteria(&quot;email&quot;, &quot;:&quot;, email));</span>
+        }
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        if (status != null) {</span>
+<span class="nc" id="L74">            spec4 = new UserSpecification(new SearchCriteria(&quot;status&quot;, &quot;:&quot;, User.StatusEnum.fromValue(status)));</span>
+        }
+<span class="fc" id="L76">        InlineResponse2002 inlineResponse2002 = new InlineResponse2002();</span>
+<span class="fc" id="L77">        inlineResponse2002.setData(userDao.findAll(Specification.where(spec1).and(spec2).and(spec3).and(spec4)));</span>
+<span class="fc" id="L78">        return inlineResponse2002;</span>
+    }
+
+    public InlineResponse2003 getUserById(Integer id) throws ApiException {
+
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (userDao.existsById(id)) {</span>
+<span class="fc" id="L84">            Optional&lt;User&gt; user = userDao.findById(id);</span>
+<span class="fc" id="L85">            InlineResponse2003 inlineResponse2003 = new InlineResponse2003();</span>
+<span class="fc" id="L86">            user.ifPresent(inlineResponse2003::setData);</span>
+<span class="fc" id="L87">            return inlineResponse2003;</span>
+<span class="fc" id="L88">        } else throw new ApiException(404, &quot;User not Found&quot;);</span>
+    }
+
+    public User updateUserById(Integer id, @Valid User body) throws Exception {
+<span class="pc bpc" id="L92" title="1 of 4 branches missed.">        if (id.equals(body.getId()) &amp;&amp; userDao.existsById(id)) {</span>
+<span class="fc" id="L93">            Optional&lt;User&gt; user = userDao.findById(id);</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">            if (user.isPresent()) {</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">                if (!(user.get().getPassword().equals(body.getPassword()))) {</span>
+<span class="fc" id="L96">                    body.setPassword(MD5Hashing.hash(body.getPassword()));</span>
+                }
+            }
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">            if (!body.getUsername().equals(user.get().getUsername())) {</span>
+<span class="fc" id="L100">                List&lt;User&gt; luser = userDao.findAll(Specification.where(new UserSpecification(new SearchCriteria(&quot;username&quot;, &quot;:&quot;, body.getUsername()))));</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">                if (!luser.isEmpty()) throw new ApiException(400, &quot;Username already exists&quot;);</span>
+            }
+<span class="fc" id="L103">            userDao.save(body);</span>
+<span class="fc" id="L104">            user = userDao.findById(id);</span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">            if (user.isPresent()) {</span>
+<span class="fc" id="L106">                return user.get();</span>
+<span class="nc" id="L107">            } else throw new ApiException(400, &quot;Bad Request&quot;);</span>
+<span class="fc" id="L108">        } else throw new ApiException(404, &quot;User not Found&quot;);</span>
+    }
+
+    public void login(User body) throws Exception {
+<span class="fc" id="L112">        UserSpecification spec2 = new UserSpecification(new SearchCriteria(&quot;username&quot;, &quot;:&quot;, body.getUsername()));</span>
+<span class="fc" id="L113">        List&lt;User&gt; users = userDao.findAll(Specification.where(spec2));</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        if (!(users.isEmpty())) {</span>
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">            if (MD5Hashing.hash(body.getPassword()).equals(users.get(0).getPassword())) {</span>
+<span class="fc" id="L116">                return;</span>
+            }
+        }
+<span class="fc" id="L119">        throw new ApiException(401, &quot;Bad Credentials&quot;);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

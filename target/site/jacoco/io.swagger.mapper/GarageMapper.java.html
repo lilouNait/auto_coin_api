@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GarageMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">garage</a> &gt; <a href="index.source.html" class="el_package">io.swagger.mapper</a> &gt; <span class="el_source">GarageMapper.java</span></div><h1>GarageMapper.java</h1><pre class="source lang-java linenums">package io.swagger.mapper;
+
+import io.swagger.Exception.ApiException;
+import io.swagger.geocode.AddressConverter;
+import io.swagger.model.*;
+import io.swagger.repository.GarageDao;
+import io.swagger.repository.UserDao;
+import io.swagger.repository.specification.GarageSpecification;
+import io.swagger.repository.specification.SearchCriteria;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class GarageMapper {
+
+    @Autowired
+    private GarageDao garageDao;
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private AddressConverter addressConverter;
+
+<span class="fc" id="L27">    public GarageMapper() {</span>
+<span class="fc" id="L28">    }</span>
+
+    public Garage createGarage(Garage body) throws Exception {
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">        if ((userDao.existsById(body.getIdPartner())) &amp;&amp; (userDao.findById(body.getIdPartner())).get().getStatus().equals(User.StatusEnum.PARTNER)) {</span>
+            try {
+<span class="fc" id="L33">                body.setId(null);</span>
+<span class="fc" id="L34">                body.getAddress().setId(null);</span>
+<span class="pc bpc" id="L35" title="3 of 4 branches missed.">                if (body.getComments() != null &amp;&amp; !(body.getComments().isEmpty())) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                    for (Comment comment : body.getComments()) {</span>
+<span class="nc" id="L37">                        comment.setId(null);</span>
+<span class="nc" id="L38">                    }</span>
+                }
+<span class="fc" id="L40">                garageDao.save(addressConverter.convertGarageAddress(body));</span>
+<span class="fc" id="L41">                return body;</span>
+<span class="nc" id="L42">            } catch (Exception e) {</span>
+<span class="nc" id="L43">                throw new ApiException((400), e.getMessage());</span>
+            }
+<span class="fc" id="L45">        } else throw new ApiException(404, &quot;partner not exists&quot;);</span>
+    }
+
+
+    public void deleteGarageById(Integer id) throws ApiException {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (garageDao.existsById(id)) {</span>
+<span class="fc" id="L51">            garageDao.deleteById(id);</span>
+<span class="fc" id="L52">        } else throw new ApiException(404, &quot;Garage not found&quot;);</span>
+<span class="fc" id="L53">    }</span>
+
+    public InlineResponse200 getGarage(@Valid String searchByName, @Valid Integer searchByPartner, @Valid String searchByAdress) {
+        GarageSpecification spec2;
+<span class="fc" id="L57">        InlineResponse200 inlineResponse200 = new InlineResponse200();</span>
+<span class="fc" id="L58">        List&lt;Garage&gt; list = garageDao.findAll();</span>
+<span class="fc" id="L59">        List&lt;Garage&gt; newList = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">        if (searchByName != null) {</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (Garage garage : list) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">                if (garage.getName().toUpperCase().contains(searchByName.toUpperCase())) {</span>
+<span class="nc" id="L63">                    newList.add(garage);</span>
+                }
+<span class="nc" id="L65">            }</span>
+<span class="nc" id="L66">            inlineResponse200.setData(newList);</span>
+<span class="nc" id="L67">            return inlineResponse200;</span>
+        }
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (searchByPartner != null) {</span>
+<span class="nc" id="L70">            spec2 = new GarageSpecification(new SearchCriteria(&quot;idPartner&quot;, &quot;:&quot;, searchByPartner));</span>
+<span class="nc" id="L71">            inlineResponse200.setData(garageDao.findAll(Specification.where(spec2)));</span>
+<span class="nc" id="L72">            return inlineResponse200;</span>
+        }
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (searchByAdress != null) {</span>
+<span class="fc" id="L75">            inlineResponse200.setData(addressConverter.findNearby(searchByAdress));</span>
+<span class="fc" id="L76">            return inlineResponse200;</span>
+        }
+<span class="fc" id="L78">        inlineResponse200.setData(list);</span>
+<span class="fc" id="L79">        return inlineResponse200;</span>
+    }
+
+    public InlineResponse2001 getGarageById(Integer id) throws ApiException {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (garageDao.existsById(id)) {</span>
+<span class="fc" id="L84">            Optional&lt;Garage&gt; garage = garageDao.findById(id);</span>
+<span class="fc" id="L85">            InlineResponse2001 inlineResponse2001 = new InlineResponse2001();</span>
+<span class="fc" id="L86">            garage.ifPresent(inlineResponse2001::setData);</span>
+<span class="fc" id="L87">            return inlineResponse2001;</span>
+<span class="fc" id="L88">        } else throw new ApiException(404, &quot;Garage not Found&quot;);</span>
+    }
+
+    public Garage updateGarageById(Integer id, @Valid Garage body) throws Exception {
+<span class="pc bpc" id="L92" title="1 of 4 branches missed.">        if (id.equals((body.getId())) &amp;&amp; garageDao.existsById(id)) {</span>
+<span class="fc" id="L93">            Optional&lt;Garage&gt; garage = garageDao.findById(id);</span>
+<span class="pc bpc" id="L94" title="2 of 4 branches missed.">            if (garage.isPresent() &amp;&amp; !(garage.get().getAddress().equals(body.getAddress()))) {</span>
+<span class="fc" id="L95">                body = addressConverter.convertGarageAddress(body);</span>
+            }
+<span class="fc bfc" id="L97" title="All 2 branches covered.">            for (Comment comment : body.getComments()) {</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">                if (!(garage.get().getComments().contains(comment))) {</span>
+<span class="fc" id="L99">                    comment.setId(null);</span>
+                }
+<span class="fc" id="L101">            }</span>
+<span class="fc" id="L102">            garageDao.save(body);</span>
+<span class="fc" id="L103">            garage = garageDao.findById(id);</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">            if (garage.isPresent()) {</span>
+<span class="fc" id="L105">                return garage.get();</span>
+<span class="nc" id="L106">            } else throw new ApiException(400, &quot;Bad request&quot;);</span>
+<span class="fc" id="L107">        } else throw new ApiException(404, &quot;Garage not found&quot;);</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

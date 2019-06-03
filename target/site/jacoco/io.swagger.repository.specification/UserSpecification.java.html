@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserSpecification.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">garage</a> &gt; <a href="index.source.html" class="el_package">io.swagger.repository.specification</a> &gt; <span class="el_source">UserSpecification.java</span></div><h1>UserSpecification.java</h1><pre class="source lang-java linenums">package io.swagger.repository.specification;
+
+import io.swagger.model.User;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+public class UserSpecification implements org.springframework.data.jpa.domain.Specification&lt;User&gt; {
+
+    private SearchCriteria criteria;
+
+<span class="fc" id="L14">    public UserSpecification(SearchCriteria criteria) {</span>
+<span class="fc" id="L15">        this.criteria = criteria;</span>
+<span class="fc" id="L16">    }</span>
+
+    @Override
+    public Predicate toPredicate
+            (Root&lt;User&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder builder) {
+
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        if (criteria.getOperation().equalsIgnoreCase(&quot;&gt;&quot;)) {</span>
+<span class="nc" id="L23">            return builder.greaterThanOrEqualTo(</span>
+<span class="nc" id="L24">                    root.get(criteria.getKey()), criteria.getValue().toString());</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">        } else if (criteria.getOperation().equalsIgnoreCase(&quot;&lt;&quot;)) {</span>
+<span class="nc" id="L26">            return builder.lessThanOrEqualTo(</span>
+<span class="nc" id="L27">                    root.get(criteria.getKey()), criteria.getValue().toString());</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        } else if (criteria.getOperation().equalsIgnoreCase(&quot;:&quot;)) {</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if (root.get(criteria.getKey()).getJavaType() == String.class) {</span>
+<span class="fc" id="L30">                return builder.like(</span>
+<span class="fc" id="L31">                        root.get(criteria.getKey()), &quot;%&quot; + criteria.getValue() + &quot;%&quot;);</span>
+            } else {
+<span class="nc" id="L33">                return builder.equal(root.get(criteria.getKey()), criteria.getValue());</span>
+            }
+        }
+<span class="nc" id="L36">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
